@@ -6,8 +6,7 @@ const Row = ({
   items,
   type,
   getInputElements,
-  originIndex,
-  pathPrefix
+  originIndex
 }) => (
   <div className={`F__r${type ? ` F__r--${type}` : ''}`}>
     {
@@ -19,11 +18,10 @@ Row.propTypes = {
   items: PropTypes.array.isRequired,
   type: PropTypes.string,
   getInputElements: PropTypes.func.isRequired,
-  originIndex: PropTypes.string.isRequired,
-  pathPrefix: PropTypes.string
+  originIndex: PropTypes.string
 };
 Row.defaultProps = {
   type: '',
-  pathPrefix: ''
+  originIndex: ''
 };
 export default Row;

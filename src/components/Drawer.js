@@ -14,7 +14,7 @@ const Drawer = ({
   <div key="drawer" className="F__g F__g--more">
     {
       label &&
-      <label className="F__l"><span>{label}</span></label>
+      <span className="F__l"><span>{label}</span></span>
     }
     <div className={`Acrd${isOpen ? ' Acrd--o' : ''}`}>
       <button onClick={onClick} className="Acrd__trg">
@@ -24,7 +24,6 @@ const Drawer = ({
       </button>
       <div
         className="Acrd__cont-c"
-        // duplicated below
         style={
           {
             maxHeight: (isOpen && items.length > 0) ? `${(items.length * 110) + 24}px` : 0
