@@ -24,7 +24,7 @@ const InputDate = ({
       id={id}
       className={`F__i${error ? ' F__i--err' : ''}`}
       valueRequired={required}
-      selected={new Date(value)}
+      selected={value}
       placeholderText={placeholder}
       onChange={onDateChange}
       withPortal={windowWidth < 768}
@@ -45,7 +45,7 @@ InputDate.propTypes = {
   windowWidth: PropTypes.number.isRequired
 };
 InputDate.defaultProps = {
-  value: new Date().toJSON(),
+  value: null,
   label: '',
   placeholder: ''
 };
