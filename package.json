@@ -1,0 +1,27 @@
+{
+  "name": "nove-components",
+  "version": "0.0.1",
+  "description": "shared components for nove.io",
+  "main": "dist/index.js",
+  "repository": "https://github.com/daviduffy/nove-components.git",
+  "author": "David Duffy <daviduffy1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-datepicker": "^2.3.0",
+    "react-dom": "^16.8.6"
+  },
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepare": "yarn run build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0"
+  }
+}
