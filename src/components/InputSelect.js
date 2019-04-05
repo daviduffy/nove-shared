@@ -1,5 +1,8 @@
+// External Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Internal Dependencies
 import { titleize } from '../utils/utils';
 
 const InputSelect = ({
