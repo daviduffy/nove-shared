@@ -1,14 +1,14 @@
 // External Dependencies
-const React = require('react');
-const PropTypes = require('prop-types');
-const DatePicker = require('react-datepicker');
+import React from 'react';
+import PropTypes from 'prop-types';
+import DatePicker from 'react-datepicker';
 
 const InputDate = ({
   id,
   label,
   required,
   error,
-  eventDate,
+  value,
   placeholder,
   onDateChange,
   windowWidth
@@ -16,15 +16,15 @@ const InputDate = ({
   <div className={`F__g F__g--${id}`}>
     {
       label &&
-      <label className={`F__l${required ? ' F__l--req' : ''}`} htmlFor="eventDate">
+      <label className={`F__l${required ? ' F__l--req' : ''}`} htmlFor={id}>
         <span>{label}</span>
       </label>
     }
     <DatePicker
-      id="eventDate"
+      id={id}
       className={`F__i${error ? ' F__i--err' : ''}`}
       valueRequired={required}
-      selected={typeof eventDate === 'string' ? new Date(eventDate) : eventDate}
+      selected={new Date(value)}
       placeholderText={placeholder}
       onChange={onDateChange}
       withPortal={windowWidth < 768}
@@ -35,10 +35,7 @@ const InputDate = ({
 );
 
 InputDate.propTypes = {
-  eventDate: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
+  value: PropTypes.string,
   error: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
@@ -48,10 +45,9 @@ InputDate.propTypes = {
   windowWidth: PropTypes.number.isRequired
 };
 InputDate.defaultProps = {
-  eventDate: undefined,
+  value: new Date().toJSON(),
   label: '',
-  path: '',
   placeholder: ''
 };
 
-module.exports = { InputDate };
+export default InputDate;
