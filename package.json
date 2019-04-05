@@ -5,16 +5,16 @@
   "main": "dist/index.js",
   "repository": "https://github.com/daviduffy/nove-components.git",
   "author": "David Duffy <daviduffy1@gmail.com>",
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepare": "yarn run build"
+  },
   "license": "MIT",
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-datepicker": "^2.3.0",
     "react-dom": "^16.8.6"
-  },
-  "scripts": {
-    "build": "babel src -d dist",
-    "prepare": "yarn run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
