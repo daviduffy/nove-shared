@@ -1,4 +1,3 @@
-import InputText from './components/InputText';
 import Drawer from './components/Drawer';
 import EditorItem from './components/EditorItem';
 import InputDate from './components/InputDate';
@@ -10,7 +9,6 @@ import Signup from './components/Signup';
 import Submit from './components/Submit';
 
 const obj = {
-  InputText,
   Drawer,
   EditorItem,
   InputDate,
