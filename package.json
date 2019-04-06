@@ -6,7 +6,7 @@
   "repository": "https://github.com/daviduffy/nove-components.git",
   "author": "David Duffy <daviduffy1@gmail.com>",
   "scripts": {
-    "build": "babel src -d dist --ignore 'src/**/*.spec.js','src/**/*.test.js','src/fixtures','src/services','src/setupTests.js'",
+    "build": "babel src -d dist --ignore 'src/**/*.spec.js','src/**/*.test.js','src/fixtures','src/setupTests.js'",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "prepare": "yarn run build"
   },
