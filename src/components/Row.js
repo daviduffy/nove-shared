@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 
 const Row = ({
   items,
-  type,
-  getInputElement,
-  originIndex
+  type
 }) => (
   <div className={`F__r${type ? ` F__r--${type}` : ''}`}>
     {
@@ -16,12 +14,9 @@ const Row = ({
 );
 Row.propTypes = {
   items: PropTypes.array.isRequired,
-  type: PropTypes.string,
-  getInputElement: PropTypes.func.isRequired,
-  originIndex: PropTypes.string
+  type: PropTypes.string
 };
 Row.defaultProps = {
-  type: '',
-  originIndex: ''
+  type: ''
 };
 export default Row;

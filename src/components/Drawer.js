@@ -7,8 +7,6 @@ const Drawer = ({
   items,
   label,
   onClick,
-  originIndex,
-  getInputElement,
   placeholder
 }) => (
   <div key="drawer" className="F__g F__g--more">
@@ -40,17 +38,14 @@ const Drawer = ({
   </div>
 );
 Drawer.propTypes = {
-  getInputElement: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
   label: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  originIndex: PropTypes.string,
   placeholder: PropTypes.string
 };
 Drawer.defaultProps = {
   label: '',
-  originIndex: '',
   placeholder: ''
 };
 export default Drawer;
