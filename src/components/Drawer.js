@@ -8,7 +8,7 @@ const Drawer = ({
   label,
   onClick,
   originIndex,
-  getInputElements,
+  getInputElement,
   placeholder
 }) => (
   <div key="drawer" className="F__g F__g--more">
@@ -32,7 +32,7 @@ const Drawer = ({
       >
         <div className="Acrd__cont">
           {
-            items.map((innerInput, i) => getInputElements(innerInput, i, `${originIndex}/items/`))
+            items.map((innerInput, i) => getInputElement(innerInput, i, `${originIndex}/items/`))
           }
         </div>
       </div>
@@ -40,7 +40,7 @@ const Drawer = ({
   </div>
 );
 Drawer.propTypes = {
-  getInputElements: PropTypes.func.isRequired,
+  getInputElement: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
   label: PropTypes.string,

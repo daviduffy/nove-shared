@@ -5,19 +5,19 @@ import PropTypes from 'prop-types';
 const Row = ({
   items,
   type,
-  getInputElements,
+  getInputElement,
   originIndex
 }) => (
   <div className={`F__r${type ? ` F__r--${type}` : ''}`}>
     {
-      items.map((subItem, i) => getInputElements(subItem, i, `${originIndex}/items/`))
+      items.map((subItem, i) => getInputElement(subItem, i, `${originIndex}/items/`))
     }
   </div>
 );
 Row.propTypes = {
   items: PropTypes.array.isRequired,
   type: PropTypes.string,
-  getInputElements: PropTypes.func.isRequired,
+  getInputElement: PropTypes.func.isRequired,
   originIndex: PropTypes.string
 };
 Row.defaultProps = {
