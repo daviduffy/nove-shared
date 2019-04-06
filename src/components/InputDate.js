@@ -28,7 +28,6 @@ const InputDate = ({
       placeholderText={placeholder}
       onChange={onDateChange}
       withPortal={windowWidth < 768}
-      readOnly={windowWidth < 768}
       autoComplete="off"
     />
   </div>
