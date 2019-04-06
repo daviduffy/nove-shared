@@ -6,7 +6,7 @@ import InputTextarea from './components/InputTextarea';
 import Row from './components/Row';
 import Submit from './components/Submit';
 
-import { getRenderedInputs, getInputComponents } from './services/contactForm';
+import { getRenderedInputs, getInputComponents, getInputs } from './services/contactForm';
 
 const obj = {
   Drawer,
@@ -16,8 +16,9 @@ const obj = {
   InputTextarea,
   Row,
   Submit,
-  getRenderedInputs,
-  getInputComponents
+  getInputs,
+  getInputComponents,
+  getRenderedInputs
 };
 
 export default obj;
