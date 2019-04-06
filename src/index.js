@@ -6,6 +6,8 @@ import InputTextarea from './components/InputTextarea';
 import Row from './components/Row';
 import Submit from './components/Submit';
 
+import { getRenderedInputs, getInputComponents } from './services/contactForm';
+
 const obj = {
   Drawer,
   InputDate,
@@ -13,7 +15,9 @@ const obj = {
   InputText,
   InputTextarea,
   Row,
-  Submit
+  Submit,
+  getRenderedInputs,
+  getInputComponents
 };
 
 export default obj;
