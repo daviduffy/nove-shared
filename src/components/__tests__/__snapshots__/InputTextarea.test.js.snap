@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render InputTextarea correctly 1`] = `
+<div
+  className="F__g F__g--name"
+  style={Object {}}
+>
+  <label
+    className="F__l"
+    htmlFor="message"
+  >
+    <span>
+      Input Label
+    </span>
+  </label>
+  <textarea
+    autoFocus={false}
+    className="F__i F__i--t"
+    id="message"
+    onChange={[Function]}
+    placeholder="Spill the details, honey"
+    value="Chicken fatback swine salami. Capicola venison chuck, hamburger picanha meatball ham ball tip kevin tri-tip salami prosciutto."
+  />
+</div>
+`;

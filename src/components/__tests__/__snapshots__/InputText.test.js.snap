@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render InputText correctly 1`] = `
+<div
+  className="F__g F__g--name"
+  style={Object {}}
+>
+  <label
+    className="F__l"
+    htmlFor="name"
+  >
+    <span>
+      Input Label
+    </span>
+  </label>
+  <input
+    autoFocus={false}
+    className="F__i"
+    id="name"
+    onChange={[Function]}
+    placeholder="Name"
+    type="text"
+    value="Bim Ellen"
+  />
+</div>
+`;

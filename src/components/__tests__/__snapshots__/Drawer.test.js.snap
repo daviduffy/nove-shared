@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render drawer normally 1`] = `
+<div
+  className="F__g F__g--more"
+  key="drawer"
+>
+  <span
+    className="F__l"
+  >
+    <span>
+      More Details
+    </span>
+  </span>
+  <div
+    className="Acrd"
+  >
+    <button
+      className="Acrd__trg"
+      onClick={[Function]}
+    >
+      <span
+        className="F__l"
+      >
+        <span
+          id="drawer_placeholder"
+        >
+          Share more details about your event here
+        </span>
+      </span>
+    </button>
+    <div
+      className="Acrd__cont-c"
+      style={
+        Object {
+          "maxHeight": 0,
+        }
+      }
+    >
+      <div
+        className="Acrd__cont"
+      >
+        <InputText
+          classes="F__g--eventVenue"
+          error={false}
+          id="eventVenue"
+          key="0"
+          label="Event Venue"
+          onBlur={[Function]}
+          onChange={[Function]}
+          options={false}
+          placeholder="Name of the venue"
+          required={false}
+          style={Object {}}
+          value=""
+        />
+        <InputSelect
+          classes="F__g--eventLocale"
+          error={false}
+          id="eventLocale"
+          key="1"
+          label="Event Location"
+          onBlur={[Function]}
+          onChange={[Function]}
+          options={
+            Array [
+              Array [
+                "",
+                "Choose a state",
+              ],
+              Array [
+                "AL",
+                "Alabama",
+              ],
+              Array [
+                "AK",
+                "Alaska",
+              ],
+              Array [
+                "AZ",
+                "Arizona",
+              ],
+              Array [
+                "AR",
+                "Arkansas",
+              ],
+              Array [
+                "CA",
+                "California",
+              ],
+              Array [
+                "CO",
+                "Colorado",
+              ],
+              Array [
+                "CT",
+                "Connecticut",
+              ],
+              Array [
+                "DE",
+                "Delaware",
+              ],
+              Array [
+                "FL",
+                "Florida",
+              ],
+              Array [
+                "GA",
+                "Georgia",
+              ],
+              Array [
+                "HI",
+                "Hawaii",
+              ],
+              Array [
+                "ID",
+                "Idaho",
+              ],
+              Array [
+                "IL",
+                "Illinois",
+              ],
+              Array [
+                "IN",
+                "Indiana",
+              ],
+              Array [
+                "IA",
+                "Iowa",
+              ],
+              Array [
+                "KS",
+                "Kansas",
+              ],
+              Array [
+                "KY",
+                "Kentucky",
+              ],
+              Array [
+                "LA",
+                "Louisiana",
+              ],
+              Array [
+                "ME",
+                "Maine",
+              ],
+              Array [
+                "MD",
+                "Maryland",
+              ],
+              Array [
+                "MA",
+                "Massachusetts",
+              ],
+              Array [
+                "MI",
+                "Michigan",
+              ],
+              Array [
+                "MN",
+                "Minnesota",
+              ],
+              Array [
+                "MS",
+                "Mississippi",
+              ],
+              Array [
+                "MO",
+                "Missouri",
+              ],
+              Array [
+                "MT",
+                "Montana",
+              ],
+              Array [
+                "NE",
+                "Nebraska",
+              ],
+              Array [
+                "NV",
+                "Nevada",
+              ],
+              Array [
+                "NH",
+                "New Hampshire",
+              ],
+              Array [
+                "NJ",
+                "New Jersey",
+              ],
+              Array [
+                "NM",
+                "New Mexico",
+              ],
+              Array [
+                "NY",
+                "New York",
+              ],
+              Array [
+                "NC",
+                "North Carolina",
+              ],
+              Array [
+                "ND",
+                "North Dakota",
+              ],
+              Array [
+                "OH",
+                "Ohio",
+              ],
+              Array [
+                "OK",
+                "Oklahoma",
+              ],
+              Array [
+                "OR",
+                "Oregon",
+              ],
+              Array [
+                "PA",
+                "Pennsylvania",
+              ],
+              Array [
+                "RI",
+                "Rhode Island",
+              ],
+              Array [
+                "SC",
+                "South Carolina",
+              ],
+              Array [
+                "SD",
+                "South Dakota",
+              ],
+              Array [
+                "TN",
+                "Tennessee",
+              ],
+              Array [
+                "TX",
+                "Texas",
+              ],
+              Array [
+                "UT",
+                "Utah",
+              ],
+              Array [
+                "VT",
+                "Vermont",
+              ],
+              Array [
+                "VA",
+                "Virginia",
+              ],
+              Array [
+                "WA",
+                "Washington",
+              ],
+              Array [
+                "WV",
+                "West Virginia",
+              ],
+              Array [
+                "WI",
+                "Wisconsin",
+              ],
+              Array [
+                "WY",
+                "Wyoming",
+              ],
+            ]
+          }
+          placeholder="Choose a state"
+          required={false}
+          style={Object {}}
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

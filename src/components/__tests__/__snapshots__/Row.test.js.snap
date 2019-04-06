@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render row normally 1`] = `
+<div
+  className="F__r F__r--2:1x2"
+>
+  <InputSelect
+    classes="F__g--type"
+    error={false}
+    id="type"
+    key="0"
+    label="Event Type"
+    onBlur={[Function]}
+    onChange={[Function]}
+    options={
+      Array [
+        Array [
+          "",
+          "Choose an event type",
+        ],
+        "ENGAGEMENT",
+        "WEDDING",
+        "FAMILY",
+        "SENIOR",
+      ]
+    }
+    placeholder="Choose an event type"
+    required={false}
+    style={Object {}}
+    value=""
+  />
+  <InputDate
+    error={false}
+    id="eventDate"
+    key="1"
+    label="Event Date"
+    onDateChange={[Function]}
+    placeholder="On or around"
+    required={false}
+    value={null}
+    windowWidth={1000}
+  />
+</div>
+`;

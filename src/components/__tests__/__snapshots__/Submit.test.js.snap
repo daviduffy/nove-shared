@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should display normal submit label and placeholder 1`] = `
+<div
+  className="F__g F__g--submit"
+>
+  <button
+    className="B B--p F__sb"
+  >
+    Submit
+  </button>
+</div>
+`;
