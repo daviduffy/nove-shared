@@ -32,7 +32,7 @@ const Drawer = ({
       >
         <div className="Acrd__cont">
           {
-            items.map((innerInput, i) => getInputElement(innerInput, i, `${originIndex}/items/`))
+            items.map(item => item)
           }
         </div>
       </div>

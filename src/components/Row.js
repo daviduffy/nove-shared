@@ -10,7 +10,7 @@ const Row = ({
 }) => (
   <div className={`F__r${type ? ` F__r--${type}` : ''}`}>
     {
-      items.map((subItem, i) => getInputElement(subItem, i, `${originIndex}/items/`))
+      items.map(item => item)
     }
   </div>
 );
