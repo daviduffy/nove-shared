@@ -12,13 +12,13 @@ const InputText = ({
   options,
   onChange,
   style,
-  valueRequired,
+  required,
   ...rest
 }) => (
   <div className={`F__g${classes ? ` ${classes}` : ''}`} style={style}>
     {
       label &&
-      <label htmlFor={id} className={`F__l${valueRequired ? ' F__l--req' : ''}`}>
+      <label htmlFor={id} className={`F__l${required ? ' F__l--req' : ''}`}>
         <span>{label}</span>
       </label>
     }
@@ -41,17 +41,17 @@ InputText.propTypes = {
   onChange: PropTypes.func.isRequired,
   options: PropTypes.bool,
   placeholder: PropTypes.string,
+  required: PropTypes.bool,
   style: PropTypes.object,
-  value: PropTypes.string.isRequired,
-  valueRequired: PropTypes.bool
+  value: PropTypes.string.isRequired
 };
 InputText.defaultProps = {
   label: '',
   classes: '',
   options: false,
   placeholder: '',
-  style: {},
-  valueRequired: false
+  required: false,
+  style: {}
 };
 
 export default InputText;

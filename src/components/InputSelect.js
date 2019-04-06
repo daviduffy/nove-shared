@@ -15,7 +15,7 @@ const InputSelect = ({
   onChange,
   style,
   type, // purposely stripped and not used
-  valueRequired,
+  required,
   ...rest
 }) => {
   const inputClasses = [];
@@ -30,7 +30,7 @@ const InputSelect = ({
     <div className={`F__g${classes ? ` ${classes}` : ''}`} style={style}>
       {
         label &&
-        <label htmlFor={id} className={`F__l${valueRequired ? ' F__l--req' : ''}`}>
+        <label htmlFor={id} className={`F__l${required ? ' F__l--req' : ''}`}>
           <span>{label}</span>
         </label>
       }
@@ -69,17 +69,17 @@ InputSelect.propTypes = {
     PropTypes.array
   ]).isRequired,
   onChange: PropTypes.func.isRequired,
+  required: PropTypes.bool,
   style: PropTypes.object,
-  value: PropTypes.string,
-  valueRequired: PropTypes.bool
+  value: PropTypes.string
 };
 InputSelect.defaultProps = {
   classes: '',
   error: false,
   id: '',
   label: '',
+  required: false,
   style: {},
-  valueRequired: false,
   value: ''
 };
 

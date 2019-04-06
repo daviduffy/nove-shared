@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 
 const InputDate = ({
+  error,
   id,
   label,
-  required,
-  error,
-  value,
-  placeholder,
   onDateChange,
+  placeholder,
+  required,
+  value,
   windowWidth
 }) => (
   <div className={`F__g F__g--${id}`}>
@@ -39,7 +39,7 @@ InputDate.propTypes = {
   error: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
-  required: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
   placeholder: PropTypes.string,
   onDateChange: PropTypes.func.isRequired,
   windowWidth: PropTypes.number.isRequired
@@ -47,7 +47,8 @@ InputDate.propTypes = {
 InputDate.defaultProps = {
   value: null,
   label: '',
-  placeholder: ''
+  placeholder: '',
+  required: false
 };
 
 export default InputDate;
