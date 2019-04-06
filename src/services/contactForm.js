@@ -116,12 +116,12 @@ export const getInputComponents = (props) => {
     return ({
       ...config,
       classes: `F__g--${id}`,
-      error: required && props.formError !== '' && props[id] === '',
+      error: required && props.formError !== '' && value === '',
       onChange: dynamicOnChange,
       onBlur: dynamicOnBlur,
       style: ({ ...(hidden ? { display: 'none' } : {}) }),
       required
     });
   };
-  return props.inputs.map(input => getInputElement(input));
+  return props.inputs.map(getInputElement);
 };
