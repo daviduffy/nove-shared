@@ -66,7 +66,6 @@ export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
 
   // build array from all keys with defaults overridden with any custom attributes
   const inputs = order.map(obj => getSingleInput(obj));
-  // console.log(inputs);
   return inputs;
 };
 
@@ -173,7 +172,7 @@ export const getInputComponents = (props) => {
       default:
         break;
     }
-    return ({
+    const output = {
       ...config,
       classes: `F__g--${id}`,
       error: required && props.formError !== '' && value === '',
@@ -181,7 +180,82 @@ export const getInputComponents = (props) => {
       onBlur: dynamicOnBlur,
       style: ({ ...(hidden ? { display: 'none' } : {}) }),
       required
-    });
+    };
+    return output;
   };
-  return props.inputs.map(getInputElement);
+  const { inputs } = props;
+  const inputElements = inputs.map(getInputElement);
+  return inputElements;
+};
+
+// No defaults are set here because they are handled in services/forms.js#getCSS
+export const getCSS = ({
+  borderStyle,
+  borderColor,
+  drawerBackgroundColor,
+  drawerTextColor,
+  inputBackgroundColor,
+  inputTextColor,
+  labelTextColor,
+  negativeColor,
+  negativeColorBg,
+  positiveColor,
+  positiveColorHover,
+  placeholderColor,
+  width
+}) => {
+  const unsetStyles = {
+    fontWeight: '300px!important',
+    color: `${placeholderColor}!important`
+  };
+  let processedBorderStyle = {};
+  if (borderStyle === 'underline') {
+    processedBorderStyle = { borderTop: 0, borderRight: 0, borderLeft: 0, borderRadius: 0 };
+  } else if (borderStyle === 'none') {
+    processedBorderStyle = { border: 0 };
+  }
+  const signup = {
+    '&': { width: `${width}!important` },
+    '& .F__l.F__l': { color: labelTextColor },
+    '& .F__i.F__i': {
+      color: inputTextColor,
+      borderColor,
+      ...processedBorderStyle,
+      backgroundColor: inputBackgroundColor
+    },
+    '& .F__i.F__i:hover, & .F__i.F__i:focus, & .F__i.F__i:active': {
+      color: inputTextColor,
+      backgroundColor: inputBackgroundColor
+    },
+    '& .F__i--err.F__i--err': { borderColor: `${negativeColor}!important` },
+    '& .Acrd__trg.Acrd__trg': {
+      borderColor,
+      backgroundColor: drawerBackgroundColor,
+      color: drawerTextColor
+    },
+    '& .Acrd__trg.Acrd__trg::after': { color: drawerTextColor },
+    '& .Acrd__trg.Acrd__trg span': { color: drawerTextColor },
+    '& .F__l--req.F__l--req span::after': { color: negativeColor },
+    '& .F__E--form.F__E--form, & .F__E--email.F__E--email': {
+      color: negativeColor,
+      borderColor: negativeColor,
+      backgroundColor: negativeColorBg
+    },
+    '& .F__i--is-unset.F__i--is-unset': unsetStyles,
+    '& ::-webkit-input-placeholder': unsetStyles,
+    '& ::-moz-placeholder': unsetStyles,
+    '& :-ms-input-placeholder': unsetStyles,
+    '& ::placeholder': unsetStyles
+  };
+  const submit = {
+    backgroundColor: `${positiveColor}!important`,
+    ':hover': { backgroundColor: `${positiveColorHover}!important` },
+    ':focus': { backgroundColor: `${positiveColorHover}!important` },
+    ':active': { backgroundColor: `${positiveColorHover}!important` }
+  };
+
+  return ({
+    signup,
+    submit
+  });
 };
