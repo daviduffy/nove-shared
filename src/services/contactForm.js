@@ -9,6 +9,7 @@ import InputSelect from '../components/InputSelect';
 import InputTextarea from '../components/InputTextarea';
 import Row from '../components/Row';
 import Submit from '../components/Submit';
+import { shadeColor } from '../utils/utils';
 
 // hydrates the order array with all props for all inputs.
 export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
@@ -259,3 +260,31 @@ export const getCSS = ({
     submit
   });
 };
+
+export const getStyles = ({
+  borderStyle,
+  borderColor,
+  drawerBackgroundColor,
+  drawerTextColor,
+  inputBackgroundColor,
+  inputTextColor,
+  labelTextColor,
+  negativeColor,
+  positiveColor,
+  placeholderColor,
+  width
+} = {}) => ({
+  borderStyle: ['full', 'underline', 'none'].includes(borderStyle) ? borderStyle : 'full',
+  borderColor: borderColor || '#b3b3b3',
+  drawerBackgroundColor: drawerBackgroundColor || '#eeeeee',
+  drawerTextColor: drawerTextColor || '#707070',
+  inputBackgroundColor: inputBackgroundColor || '#fefefe',
+  inputTextColor: inputTextColor || '#444444',
+  labelTextColor: labelTextColor || '#444444',
+  negativeColor: negativeColor || '#e74c3c',
+  negativeColorBg: shadeColor(negativeColor || '#e74c3c', 0.8),
+  positiveColor: positiveColor || '#2ecc71',
+  positiveColorHover: shadeColor(positiveColor || '#2ecc71', -0.09),
+  placeholderColor: placeholderColor || '#b3b3b3',
+  width: width || '560px'
+});
