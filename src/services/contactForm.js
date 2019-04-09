@@ -75,7 +75,8 @@ export const getRenderedInputs = ({
   onAccordionClick,
   inputComponents,
   order,
-  style
+  style,
+  wrapped = C => C
 }) => {
   const renderInput = (({ id, items, ...rest }, i, pathPrefix = '') => {
     const path = `${pathPrefix}${i}`;
@@ -106,12 +107,14 @@ export const getRenderedInputs = ({
         default:
           break;
       }
-      return (<Component {...config} />);
+      return (wrapped(<Component {...config} />));
     }
-    if (id === 'submit') return (<Submit key={i} style={style.submit} path={path} {...rest} />);
+    if (id === 'submit') {
+      return wrapped(<Submit key={i} style={style.submit} path={path} {...rest} />);
+    }
     const { Component, ...REST } = inputComponents.find(({ id: arrayID }) => arrayID === id);
     return (
-      <Component key={i} path={path} {...REST} />
+      wrapped(<Component key={i} path={path} {...REST} />)
     );
   });
   renderInput.propTypes = {
