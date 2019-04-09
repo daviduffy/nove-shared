@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FORM_ORDER, FORM_INPUTS_DEFAULT } from 'nove-common';
+import { FORM_ORDER, FORM_INPUTS_DEFAULT } from '../constants/formInputs';
 
 import Drawer from '../components/Drawer';
 import InputDate from '../components/InputDate';
@@ -77,7 +77,8 @@ export const getRenderedInputs = ({
   order,
   style
 }) => {
-  const renderInput = (({ id, items, ...rest }, i) => {
+  const renderInput = (({ id, items, ...rest }, i, pathPrefix = '') => {
+    const path = `${pathPrefix}${i}`;
     if (items) {
       let config;
       let Component;
@@ -88,8 +89,9 @@ export const getRenderedInputs = ({
             ...rest,
             key: `${id}-${i}`,
             isOpen: accordionOpen,
-            items: items.map(renderInput),
-            onClick: onAccordionClick
+            items: items.map((subItem, ix) => renderInput(subItem, ix, `${path}/items/`)),
+            onClick: onAccordionClick,
+            path
           });
           break;
         case 'row':
@@ -97,7 +99,8 @@ export const getRenderedInputs = ({
           config = ({
             ...rest,
             key: `${id}-${i}`,
-            items: items.map(renderInput)
+            items: items.map((subItem, ix) => renderInput(subItem, ix, `${path}/items/`)),
+            path
           });
           break;
         default:
@@ -105,10 +108,10 @@ export const getRenderedInputs = ({
       }
       return (<Component {...config} />);
     }
-    if (id === 'submit') return (<Submit key={i} style={style.submit} {...rest} />);
+    if (id === 'submit') return (<Submit key={i} style={style.submit} path={path} {...rest} />);
     const { Component, ...REST } = inputComponents.find(({ id: arrayID }) => arrayID === id);
     return (
-      <Component key={i} {...REST} />
+      <Component key={i} path={path} {...REST} />
     );
   });
   renderInput.propTypes = {
@@ -119,7 +122,7 @@ export const getRenderedInputs = ({
     ])
   };
   renderInput.defaultProps = { items: false };
-  return order.map(renderInput);
+  return order.map((item, i) => renderInput(item, i));
 };
 
 export const getInputComponents = (props) => {
@@ -288,3 +291,21 @@ export const getStyles = ({
   placeholderColor: placeholderColor || '#b3b3b3',
   width: width || '560px'
 });
+
+// un-nests inputs into flattened array
+export const flattenInputs = (arr) => {
+  const flattenedInputs = arr.reduce((acc, curr) => {
+    if (curr.items) {
+      let itemsToAdd;
+      const hasChildren = curr.items.some(({ items }) => items);
+      if (hasChildren) {
+        itemsToAdd = flattenInputs(curr.items);
+      } else {
+        itemsToAdd = curr.items;
+      }
+      return [...acc, ...itemsToAdd];
+    }
+    return [...acc, curr];
+  }, []);
+  return flattenedInputs;
+};
