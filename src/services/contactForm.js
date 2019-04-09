@@ -88,6 +88,7 @@ export const getRenderedComponents = ({
           Component = Drawer;
           config = ({
             ...rest,
+            id,
             key: `${id}-${i}`,
             isOpen: accordionOpen,
             items: items.map((subItem, ix) => renderInput(subItem, ix, `${path}/items/`)),
@@ -99,6 +100,7 @@ export const getRenderedComponents = ({
           Component = Row;
           config = ({
             ...rest,
+            id,
             key: `${id}-${i}`,
             items: items.map((subItem, ix) => renderInput(subItem, ix, `${path}/items/`)),
             path
@@ -110,7 +112,7 @@ export const getRenderedComponents = ({
       return (wrapped(<Component {...config} />));
     }
     if (id === 'submit') {
-      return wrapped(<Submit key={i} style={style.submit} path={path} {...rest} />);
+      return wrapped(<Submit key={i} id={id} style={style.submit} path={path} {...rest} />);
     }
     const { Component, ...REST } = inputComponents.find(({ id: arrayID }) => arrayID === id);
     return (
