@@ -5,13 +5,13 @@ import { shallow } from 'enzyme';
 // Internal Dependencies
 import Row from '../Row';
 import { customLayout } from '../../fixtures/forms';
-import { getInputs, getInputComponents, getRenderedInputs } from '../../services/contactForm';
+import { getInputs, getInputConfig, getRenderedComponents } from '../../services/contactForm';
 
 // not testing 'remote config' because fetch is performed by SignupRetriever
 let wrapper;
 const props = { ...customLayout.order[2] };
 
-const inputComponents = getInputComponents({
+const inputComponents = getInputConfig({
   // this is the flattened inputs with values in SignupContainer
   formError: false,
   onDateChange: () => {},
@@ -20,7 +20,7 @@ const inputComponents = getInputComponents({
   windowWidth: 1000
 });
 
-const renderedInputs = getRenderedInputs({
+const renderedInputs = getRenderedComponents({
   accordionOpen: false,
   inputComponents,
   onAccordionClick: () => {},

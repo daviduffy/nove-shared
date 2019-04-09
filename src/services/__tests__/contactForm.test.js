@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 // Internal Dependencies
-import { getInputs, getRenderedInputs, getInputComponents, getCSS, getStyles, flattenInputs } from '../contactForm';
+import { getInputs, getRenderedComponents, getInputConfig, getCSS, getStyles, flattenInputs } from '../contactForm';
 import { EVENT_TYPES_COMMON } from '../../constants/eventTypes';
 import { FORM_ORDER } from '../../constants/formInputs';
 
@@ -11,7 +11,7 @@ test('should return correctly shaped input components', () => {
   const style = getCSS(getStyles({}));
   const inputs = getInputs({ types: EVENT_TYPES_COMMON, order: FORM_ORDER.FULL });
   const flattenedInputs = flattenInputs(inputs);
-  const inputComponents = getInputComponents({
+  const inputComponents = getInputConfig({
     eventDate: null,
     formError: '',
     inputs: flattenedInputs,
@@ -22,7 +22,7 @@ test('should return correctly shaped input components', () => {
     onPhoneBlur: () => {},
     windowWidth: 700
   });
-  const renderedInputs = getRenderedInputs({
+  const renderedInputs = getRenderedComponents({
     accordionOpen: true,
     inputComponents,
     onAccordionClick: () => {},
@@ -45,7 +45,7 @@ test('should return wrap input components when wrapped func is passed', () => {
       <button onClick={onClickSpy}>{"i'm a button"}</button>
     </div>
   );
-  const inputComponents = getInputComponents({
+  const inputComponents = getInputConfig({
     eventDate: null,
     formError: '',
     inputs: flattenedInputs,
@@ -56,7 +56,7 @@ test('should return wrap input components when wrapped func is passed', () => {
     onPhoneBlur: () => {},
     windowWidth: 700
   });
-  const renderedInputs = getRenderedInputs({
+  const renderedInputs = getRenderedComponents({
     accordionOpen: true,
     inputComponents,
     onAccordionClick: () => {},

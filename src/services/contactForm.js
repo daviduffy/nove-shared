@@ -70,7 +70,7 @@ export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
   return inputs;
 };
 
-export const getRenderedInputs = ({
+export const getRenderedComponents = ({
   accordionOpen,
   onAccordionClick,
   inputComponents,
@@ -128,7 +128,7 @@ export const getRenderedInputs = ({
   return order.map((item, i) => renderInput(item, i));
 };
 
-export const getInputComponents = (props) => {
+export const getInputConfig = (props) => {
   const getInputElement = ({
     hidden = false,
     id,
