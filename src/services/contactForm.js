@@ -32,16 +32,18 @@ export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
     return attribute;
   };
 
-  const getSingleInput = ({ id, items, type, ...rest }) => {
+  const getSingleInput = ({ id, items, type, ...rest } = {}, index, pathPrefix = '') => {
+    const path = `${pathPrefix}${index}`;
     // recurse if the current item is a parent of other items
     if (['row', 'drawer'].includes(id)) {
-      const subItems = items.map(subObject => getSingleInput(subObject));
+      const subItems = items.map((subObject, ind) => getSingleInput(subObject, ind, `${path}/`));
       const input = {
         id,
         ...FORM_INPUTS_DEFAULT[id],
         items: subItems,
         ...rest,
-        ...(type ? { type } : {})
+        ...(type ? { type } : {}),
+        path
       };
       return input;
     }
@@ -66,7 +68,7 @@ export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
   };
 
   // build array from all keys with defaults overridden with any custom attributes
-  const inputs = order.map(obj => getSingleInput(obj));
+  const inputs = order.map((obj, index) => getSingleInput(obj, index));
   return inputs;
 };
 
@@ -127,7 +129,13 @@ export const getRenderedComponents = ({
     ])
   };
   renderInput.defaultProps = { items: false };
+
   return order.map((item, i) => renderInput(item, i));
+  // const nextOrder = [];
+  // order.forEach((item, i) => {
+  //   nextOrder.push(renderInput(item, i));
+  // });
+  // return nextOrder;
 };
 
 export const getInputConfig = (props) => {
@@ -193,6 +201,7 @@ export const getInputConfig = (props) => {
     return output;
   };
   const { inputs } = props;
+
   const inputElements = inputs.map(getInputElement);
   return inputElements;
 };
@@ -313,4 +322,67 @@ export const flattenInputs = (arr) => {
     return [...acc, curr];
   }, []);
   return flattenedInputs;
+};
+
+// un-nests inputs into flattened array
+export const denormalizeInputs = (arr) => {
+  const inputs = [];
+  const getflattenedInputs = ({ curr, index, pathPrefix = '' }) => {
+
+    // join any prefix with current index to mark final location of current input
+    const path = `${pathPrefix}${index}`;
+
+    // if this is a row or the drawer
+    if (curr.items) {
+
+      // strip off items to be added to the new flat array
+      const { items, ...rest } = curr;
+
+      // push up just the current input
+      inputs.push({ ...rest, path });
+
+      // push up any nested inputs
+      items.forEach((CURR, INDEX) => getflattenedInputs({ curr: CURR, index: INDEX, pathPrefix: `${path}/` }));
+
+    // otherwise just push the input
+    } else {
+      inputs.push({ ...curr, path });
+    }
+  };
+  arr.forEach((curr, index) => getflattenedInputs({ curr, index }));
+  return inputs;
+};
+
+// un-nests inputs into flattened array
+export const renormalizeInputs = (arr) => {
+  const inputs = [];
+  const getNestedInputs = ({ curr }) => {
+
+    // get path to final resting place of current input
+    const path = curr.path.split('/').map(it => parseInt(it, 10));
+
+    // eslint-disable-next-line
+    const [L1, L2, L3] = path;
+    let parent;
+
+    // top-level item
+    if (path.length === 1) {
+      return inputs.push(curr);
+
+    // one level of nesting (regular drawer or row)
+    } else if (path.length === 2) {
+      parent = inputs[L1];
+
+    // two levels of nesting (row inside of drawer)
+    } else {
+      parent = inputs[L1].items[L2];
+    }
+
+    // push current into correct array within parent element
+    const items = [...(parent.items || []), curr];
+    parent.items = items;
+
+  };
+  arr.forEach((curr, index) => getNestedInputs({ curr }));
+  return inputs;
 };

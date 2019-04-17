@@ -5,7 +5,11 @@ export const uuid = (a) => {return a?(a^Math.random()*16>>a/4).toString(16):([1e
 export const throttle = (func, limit) => {
   let lastFunc;
   let lastRan;
-  return function outer() {
+  return function outer(e) {
+    if (e) {
+      e.persist && e.persist();
+      e.preventDefault && e.preventDefault();
+    }
     const context = this;
     const args = arguments;
     if (!lastRan) {
