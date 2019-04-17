@@ -39,11 +39,11 @@ export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
       const subItems = items.map((subObject, ind) => getSingleInput(subObject, ind, `${path}/`));
       const input = {
         id,
+        path,
         ...FORM_INPUTS_DEFAULT[id],
         items: subItems,
         ...rest,
-        ...(type ? { type } : {}),
-        path
+        ...(type ? { type } : {})
       };
       return input;
     }
@@ -51,6 +51,7 @@ export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
     // create the full-fledged input
     const input = {
       id,
+      path,
       ...(type ? { type } : {}),
       ...(FORM_INPUTS_DEFAULT[id] || {}),
       ...rest,
@@ -80,8 +81,7 @@ export const getRenderedComponents = ({
   style,
   wrapped = C => C
 }) => {
-  const renderInput = (({ id, items, ...rest }, i, pathPrefix = '') => {
-    const path = `${pathPrefix}${i}`;
+  const renderInput = (({ id, items, ...rest }, i) => {
     if (items) {
       let config;
       let Component;
@@ -93,9 +93,8 @@ export const getRenderedComponents = ({
             id,
             key: `${id}-${i}`,
             isOpen: accordionOpen,
-            items: items.map((subItem, ix) => renderInput(subItem, ix, `${path}/items/`)),
-            onClick: onAccordionClick,
-            path
+            items: items.map((subItem, ix) => renderInput(subItem, ix)),
+            onClick: onAccordionClick
           });
           break;
         case 'row':
@@ -104,8 +103,7 @@ export const getRenderedComponents = ({
             ...rest,
             id,
             key: `${id}-${i}`,
-            items: items.map((subItem, ix) => renderInput(subItem, ix, `${path}/items/`)),
-            path
+            items: items.map((subItem, ix) => renderInput(subItem, ix))
           });
           break;
         default:
@@ -114,11 +112,11 @@ export const getRenderedComponents = ({
       return (wrapped(<Component {...config} />));
     }
     if (id === 'submit') {
-      return wrapped(<Submit key={i} id={id} style={style.submit} path={path} {...rest} />);
+      return wrapped(<Submit key={i} id={id} style={style.submit} {...rest} />);
     }
     const { Component, ...REST } = inputComponents.find(({ id: arrayID }) => arrayID === id);
     return (
-      wrapped(<Component key={i} path={path} {...REST} />)
+      wrapped(<Component key={i} {...REST} />)
     );
   });
   renderInput.propTypes = {
@@ -327,10 +325,7 @@ export const flattenInputs = (arr) => {
 // un-nests inputs into flattened array
 export const denormalizeInputs = (arr) => {
   const inputs = [];
-  const getflattenedInputs = ({ curr, index, pathPrefix = '' }) => {
-
-    // join any prefix with current index to mark final location of current input
-    const path = `${pathPrefix}${index}`;
+  const getflattenedInputs = ({ curr, index }) => {
 
     // if this is a row or the drawer
     if (curr.items) {
@@ -339,14 +334,14 @@ export const denormalizeInputs = (arr) => {
       const { items, ...rest } = curr;
 
       // push up just the current input
-      inputs.push({ ...rest, path });
+      inputs.push(rest);
 
       // push up any nested inputs
-      items.forEach((CURR, INDEX) => getflattenedInputs({ curr: CURR, index: INDEX, pathPrefix: `${path}/` }));
+      items.forEach((CURR, INDEX) => getflattenedInputs({ curr: CURR, index: INDEX }));
 
     // otherwise just push the input
     } else {
-      inputs.push({ ...curr, path });
+      inputs.push(curr);
     }
   };
   arr.forEach((curr, index) => getflattenedInputs({ curr, index }));
@@ -381,8 +376,8 @@ export const renormalizeInputs = (arr) => {
     // push current into correct array within parent element
     const items = [...(parent.items || []), curr];
     parent.items = items;
-
   };
+
   arr.forEach((curr, index) => getNestedInputs({ curr }));
   return inputs;
 };

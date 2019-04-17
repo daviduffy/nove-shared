@@ -30,12 +30,12 @@ test('should return correctly shaped input components', () => {
     style
   });
 
-  const Name = renderedInputs.find(({ props }) => props.id === 'name');
-  const Drawer = renderedInputs.find(({ props }) => props.id === 'drawer');
+  const Name = inputs.find(({ id }) => id === 'name');
+  const Drawer = inputs.find(({ id }) => id === 'drawer');
 
-  expect(Name.props.path).toEqual('0');
-  expect(Drawer.props.path).toEqual('5');
-  expect(Drawer.props.items.find(({ props }) => props.id === 'eventLocale').props.path).toEqual('5/items/1');
+  expect(Name.path).toEqual('0');
+  expect(Drawer.path).toEqual('5');
+  expect(Drawer.items.find(({ id }) => id === 'eventLocale').path).toEqual('5/1');
 });
 
 test('should return wrap input components when wrapped func is passed', () => {
