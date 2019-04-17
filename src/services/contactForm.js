@@ -142,6 +142,7 @@ export const getInputConfig = (props) => {
     id,
     label,
     options,
+    path,
     placeholder,
     required,
     type,
@@ -153,6 +154,7 @@ export const getInputConfig = (props) => {
       Component: InputText,
       label,
       id,
+      path,
       placeholder,
       value,
       required
