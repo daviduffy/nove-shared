@@ -49,7 +49,7 @@ exports[`should render drawer normally 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           options={false}
-          path="0"
+          path="5/0"
           placeholder="Name of the venue"
           required={false}
           style={Object {}}
@@ -271,7 +271,7 @@ exports[`should render drawer normally 1`] = `
               ],
             ]
           }
-          path="1"
+          path="5/1"
           placeholder="Choose a state"
           required={false}
           style={Object {}}

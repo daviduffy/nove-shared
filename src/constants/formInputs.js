@@ -77,33 +77,29 @@ export const FORM_INPUTS_DEFAULT = {
 };
 
 const PRIMITIVE = [
-  { id: 'name' },
-  { id: 'email' }
+  { id: 'name', path: '0' },
+  { id: 'email', path: '1' }
 ];
 
 const BASE = [
   ...PRIMITIVE,
-  { id: 'submit' }
+  { id: 'submit', path: '2' }
 ];
 const MINI = [
   ...PRIMITIVE,
-  { id: 'message' },
-  { id: 'submit' }
+  { id: 'message', path: '2' },
+  { id: 'submit', path: '3' }
 ];
 const FULL = [
   ...PRIMITIVE,
-  { id: 'type' },
-  { id: 'eventDate' },
-  { id: 'referralSource' },
-  {
-    id: 'drawer',
-    items: [
-      { id: 'eventVenue' },
-      { id: 'eventLocale' }
-    ]
-  },
-  { id: 'message' },
-  { id: 'submit' }
+  { id: 'type', path: '2' },
+  { id: 'eventDate', path: '3' },
+  { id: 'referralSource', path: '4' },
+  { id: 'drawer', path: '5' },
+  { id: 'eventVenue', path: '5/0' },
+  { id: 'eventLocale', path: '5/1' },
+  { id: 'message', path: '6' },
+  { id: 'submit', path: '7' }
 ];
 
 export const FORM_ORDER = {

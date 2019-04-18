@@ -12,7 +12,7 @@ import Submit from '../components/Submit';
 import { shadeColor } from '../utils/utils';
 
 // hydrates the order array with all props for all inputs.
-export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
+export const getHydratedOrder = ({ types, order = FORM_ORDER.BASE } = {}) => { // formerly getInputs
   // used to set required and active attributes.
   // forces name and email to be required and active
   const setRequiredDefaults = ({ defaults, id, key }) => {
@@ -34,19 +34,6 @@ export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
 
   const getSingleInput = ({ id, items, type, ...rest } = {}, index, pathPrefix = '') => {
     const path = `${pathPrefix}${index}`;
-    // recurse if the current item is a parent of other items
-    if (['row', 'drawer'].includes(id)) {
-      const subItems = items.map((subObject, ind) => getSingleInput(subObject, ind, `${path}/`));
-      const input = {
-        id,
-        path,
-        ...FORM_INPUTS_DEFAULT[id],
-        items: subItems,
-        ...rest,
-        ...(type ? { type } : {})
-      };
-      return input;
-    }
 
     // create the full-fledged input
     const input = {
@@ -54,13 +41,16 @@ export const getInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
       path,
       ...(type ? { type } : {}),
       ...(FORM_INPUTS_DEFAULT[id] || {}),
-      ...rest,
-      // if the field is hidden, never have it be required
-      required: rest.hidden ? false : setRequiredDefaults({ defaults: FORM_INPUTS_DEFAULT, id, key: 'required' })
+      ...rest
     };
+      // if the field is hidden, never have it be required
+    const required = rest.hidden ? false : setRequiredDefaults({ defaults: FORM_INPUTS_DEFAULT, id, key: 'required' });
 
-    // set values if default value is supplied
-    input.value = input.type === 'date' ? undefined : (rest.value || '');
+    // set values if this is an controllable input, and if default value is supplied
+    if (!['row', 'drawer', 'submit'].includes(id)) {
+      input.value = input.type === 'date' ? undefined : (rest.value || '');
+      input.required = required;
+    }
 
     // set types to config types instead of defaults
     if (id === 'type' && !input.options && types) input.options = types;

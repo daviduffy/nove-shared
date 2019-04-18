@@ -49,27 +49,17 @@ const mini = {
 const customLayout = {
   name: 'customLayout',
   order: [
-    { id: 'name' },
-    { id: 'email' },
-    {
-      id: 'row',
-      type: '2:1x2',
-      items: [
-        { id: 'type' },
-        { id: 'eventDate' }
-      ]
-    },
-    {
-      id: 'drawer',
-      items:
-        [
-          { id: 'eventVenue' },
-          { id: 'eventLocale' }
-        ]
-    },
-    { id: 'referralSource' },
-    { id: 'message' },
-    { id: 'submit' }
+    { id: 'name', path: '0' },
+    { id: 'email', path: '1' },
+    { id: 'row', type: '2:1x2', path: '2' },
+    { id: 'type', path: '2/0' },
+    { id: 'eventDate', path: '2/1' },
+    { id: 'drawer', path: '3' },
+    { id: 'eventVenue', path: '3/0' },
+    { id: 'eventLocale', path: '3/1' },
+    { id: 'referralSource', path: '4' },
+    { id: 'message', path: '5' },
+    { id: 'submit', path: '6' }
   ],
   selector: '#nove_signup',
   types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
@@ -79,38 +69,24 @@ const customLayout = {
 const nestedRow = {
   name: 'customLayout',
   order: [
-    { id: 'name' },
-    { id: 'email' },
+    { id: 'name', path: '0' },
+    { id: 'email', path: '1' },
+    { id: 'row', type: '2:1x2', path: '2' },
+    { id: 'type', path: '2/0' },
+    { id: 'eventDate', path: '2/1' },
+    { id: 'drawer', path: '3' },
+    { id: 'row', path: '3/0', type: '2:1x2' },
+    { id: 'eventVenue', path: '3/0/0' },
+    { id: 'eventLocale', path: '3/0/1' },
     {
-      id: 'row',
-      type: '2:1x2',
-      items: [
-        { id: 'type' },
-        { id: 'eventDate' }
-      ]
+      id: 'disconnected',
+      path: '3/1',
+      label: 'Dead-end input',
+      placeholder: 'Enter a random number'
     },
-    {
-      id: 'drawer',
-      items:
-        [
-          {
-            id: 'row',
-            type: '2:1x2',
-            items: [
-              { id: 'eventVenue' },
-              { id: 'eventLocale' }
-            ]
-          },
-          {
-            id: 'disconnected',
-            label: 'Dead-end input',
-            placeholder: 'Enter a random number'
-          }
-        ]
-    },
-    { id: 'referralSource' },
-    { id: 'message' },
-    { id: 'submit' }
+    { id: 'referralSource', path: '4' },
+    { id: 'message', path: '5' },
+    { id: 'submit', path: '6' }
   ],
   selector: '#nove_signup',
   types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
@@ -121,21 +97,16 @@ const nestedRow = {
 const stuffedDrawer = {
   name: 'stuffedDrawer',
   order: [
-    { id: 'name' },
-    { id: 'email' },
-    {
-      id: 'drawer',
-      items:
-        [
-          { id: 'type' },
-          { id: 'eventDate' },
-          { id: 'eventVenue' },
-          { id: 'eventLocale' },
-          { id: 'referralSource' }
-        ]
-    },
-    { id: 'message' },
-    { id: 'submit' }
+    { id: 'name', path: '0' },
+    { id: 'email', path: '1' },
+    { id: 'drawer', path: '2' },
+    { id: 'type', path: '2/0' },
+    { id: 'eventDate', path: '2/1' },
+    { id: 'eventVenue', path: '2/2' },
+    { id: 'eventLocale', path: '2/3' },
+    { id: 'referralSource', path: '2/4' },
+    { id: 'message', path: '3' },
+    { id: 'submit', path: '4' }
   ],
   selector: '#nove_signup',
   types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
@@ -145,11 +116,12 @@ const stuffedDrawer = {
 const customAttributeAndBudget = {
   name: 'form with budget & custom',
   order: [
-    { id: 'name' },
-    { id: 'email' },
-    { id: 'budget' },
+    { id: 'name', path: '0' },
+    { id: 'email', path: '1' },
+    { id: 'budget', path: '2' },
     {
       id: '14112e56-b1a9-4b0a-83ca-976579f70474',
+      path: '3',
       active: true,
       label: 'Custom field',
       name: 'special-field',
@@ -157,7 +129,7 @@ const customAttributeAndBudget = {
       type: 'text',
       vanityName: 'Special field'
     },
-    { id: 'submit' }
+    { id: 'submit', path: '4' }
   ],
   selector: '#nove_signup',
   types: ['WEDDING', 'COMMERCIAL', 'NEWBORN', 'ENGAGEMENT'],
@@ -167,32 +139,34 @@ const customAttributeAndBudget = {
 const customDrawerText = {
   name: 'fixed custom fields',
   order: [
-    { id: 'name' },
-    { id: 'email' },
-    { id: 'type' },
-    { id: 'eventDate' },
-    { id: 'referralSource' },
+    { id: 'name', path: '0' },
+    { id: 'email', path: '1' },
+    { id: 'type', path: '2' },
+    { id: 'eventDate', path: '3' },
+    { id: 'referralSource', path: '4' },
     {
       id: 'drawer',
+      path: '5',
       label: '',
       placeholder: 'Enter more information',
       items: [
         {
           id: '14112e56-b1a9-4b0a-83ca-976579f70474',
+          path: '5/0',
           name: 'special-field',
           label: 'Special Field',
           placeholder: 'enter a random number',
           type: 'text',
           vanityName: 'Special field'
         },
-        { id: 'eventVenue' },
-        { id: 'phone' }
+        { id: 'eventVenue', path: '5/1' },
+        { id: 'phone', path: '5/2' }
       ]
     },
-    { id: 'eventLocale' },
-    { id: 'message' },
-    { id: 'budget' },
-    { id: 'submit' }
+    { id: 'eventLocale', path: '6' },
+    { id: 'message', path: '7' },
+    { id: 'budget', path: '8' },
+    { id: 'submit', path: '9' }
   ],
   selector: '#nove_signup',
   types: ['WEDDING', 'COMMERCIAL', 'NEWBORN', 'ENGAGEMENT'],

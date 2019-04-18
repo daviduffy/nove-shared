@@ -24,7 +24,7 @@ exports[`should render row normally 1`] = `
         "SENIOR",
       ]
     }
-    path="0"
+    path="2/0"
     placeholder="Choose an event type"
     required={false}
     style={Object {}}
@@ -36,7 +36,7 @@ exports[`should render row normally 1`] = `
     key="1"
     label="Event Date"
     onDateChange={[Function]}
-    path="1"
+    path="2/1"
     placeholder="On or around"
     required={false}
     value={null}

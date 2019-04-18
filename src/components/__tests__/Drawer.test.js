@@ -1,12 +1,12 @@
 // External Dependencies
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FORM_INPUTS_DEFAULT, FORM_ORDER } from 'nove-common';
 
 // Internal Dependencies
 import Drawer from '../Drawer';
+import { FORM_INPUTS_DEFAULT, FORM_ORDER } from '../../constants/formInputs';
 import { customDrawerText, stuffedDrawer } from '../../fixtures/forms';
-import { getInputs, getInputConfig, getRenderedComponents } from '../../services/contactForm';
+import * as forms from '../../services/contactForm';
 
 // not testing 'remote config' because fetch is performed by SignupRetriever
 let wrapper;
@@ -17,20 +17,26 @@ const props = {
   onClick: () => {}
 };
 
-const inputComponents = getInputConfig({
+const hydratedInputs = forms.getHydratedOrder({ order: FORM_ORDER.FULL });
+const renormalizedInputs = forms.renormalizeInputs(hydratedInputs);
+const drawer = renormalizedInputs.find(({ id }) => id === 'drawer');
+
+const inputComponents = forms.getInputConfig({
   // this is the flattened inputs with values in SignupContainer
   formError: false,
   onInputChange: () => {},
-  inputs: getInputs({ order: props.items }),
+  inputs: hydratedInputs,
   windowWidth: 1000
 });
-const renderedInputs = getRenderedComponents({
+// console.log(drawer);
+const renderedInputs = forms.getRenderedComponents({
   accordionOpen: false,
   inputComponents,
   onAccordionClick: () => {},
-  order: props.items, // this is awkward
+  order: drawer.items, // this is awkward
   style: {}
 });
+
 props.items = renderedInputs;
 
 beforeEach(() => {
@@ -49,6 +55,7 @@ test('should display normal drawer label and placeholder', () => {
 });
 
 test('should display custom drawer placeholder text and no label', () => {
+  const renormalizedInputs = forms.renormalizeInputs(customDrawerText.order);
   const drawer = customDrawerText.order.find(({ id }) => id === 'drawer');
   const customProps = { ...props, placeholder: drawer.placeholder, label: '' };
   wrapper = shallow(<Drawer {...customProps} />);
@@ -62,6 +69,7 @@ test('should show items within drawer', () => {
 });
 
 test('should set drawer height correctly when multiple items are in it', () => {
+  const renormalizedInputs = forms.renormalizeInputs(stuffedDrawer.order);
   const drawer = stuffedDrawer.order.find(({ id }) => id === 'drawer');
   const customProps = { ...props, ...drawer };
   const maxHeightWhenOpen = (drawer.items.length * 110) + 24;

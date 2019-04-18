@@ -4,27 +4,32 @@ import { shallow } from 'enzyme';
 
 // Internal Dependencies
 import Row from '../Row';
+import { FORM_ORDER } from '../../constants/formInputs';
 import { customLayout } from '../../fixtures/forms';
-import { getInputs, getInputConfig, getRenderedComponents } from '../../services/contactForm';
+import * as forms from '../../services/contactForm';
 
 // not testing 'remote config' because fetch is performed by SignupRetriever
 let wrapper;
 const props = { ...customLayout.order[2] };
 
-const inputComponents = getInputConfig({
+const hydratedInputs = forms.getHydratedOrder({ order: customLayout.order });
+const renormalizedInputs = forms.renormalizeInputs(hydratedInputs);
+const row = renormalizedInputs.find(({ id }) => id === 'row');
+
+const inputComponents = forms.getInputConfig({
   // this is the flattened inputs with values in SignupContainer
   formError: false,
   onDateChange: () => {},
   onInputChange: () => {},
-  inputs: getInputs({ order: props.items }),
+  inputs: hydratedInputs,
   windowWidth: 1000
 });
 
-const renderedInputs = getRenderedComponents({
+const renderedInputs = forms.getRenderedComponents({
   accordionOpen: false,
   inputComponents,
   onAccordionClick: () => {},
-  order: props.items, // this is awkward
+  order: row.items, // this is awkward
   style: {}
 });
 props.items = renderedInputs;
@@ -35,15 +40,15 @@ beforeEach(() => {
 
 // row
 // =================================================================================================
-test.only('should render row normally', () => {
+test('should render row normally', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test.only('should show items within row', () => {
+test('should show items within row', () => {
   expect(wrapper.find('.F__r').children()).toHaveLength(2);
 });
 
-test.only('should display custom row class if present', () => {
+test('should display custom row class if present', () => {
   const className = wrapper.find('.F__r').prop('className');
   expect(className).toEqual('F__r F__r--2:1x2');
 });
