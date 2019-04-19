@@ -173,6 +173,12 @@ const customDrawerText = {
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
+const customSubmitStyle = {
+  borderStyle: 'underline',
+  borderColor: '#ff9900',
+  width: '100%'
+};
+
 const customSignupSuccessText = {
   signupSuccessButton: 'word',
   signupSuccessHeading: 'like,',
@@ -186,12 +192,13 @@ export {
   mini,
   normal,
   customLayout,
-  defaultStyles,
+  customSubmitStyle,
   customAttributeAndBudget,
   customSignupSuccessText,
   customDrawerText,
-  nestedRow,
+  defaultStyles,
   lockedToWeddings,
+  nestedRow,
   stuffedDrawer,
   FORM_INPUTS_DEFAULT as default
 };

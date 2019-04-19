@@ -63,69 +63,7 @@ export const getHydratedOrder = ({ types, order = FORM_ORDER.BASE } = {}) => { /
   return inputs;
 };
 
-export const getRenderedComponents = ({
-  accordionOpen,
-  onAccordionClick,
-  inputComponents,
-  order,
-  style,
-  wrapped = C => C
-}) => {
-  const renderInput = (({ id, items, ...rest }, i) => {
-    if (items) {
-      let config;
-      let Component;
-      switch (id) {
-        case 'drawer':
-          Component = Drawer;
-          config = ({
-            ...rest,
-            id,
-            key: `${id}-${i}`,
-            isOpen: accordionOpen,
-            items: items.map((subItem, ix) => renderInput(subItem, ix)),
-            onClick: onAccordionClick
-          });
-          break;
-        case 'row':
-          Component = Row;
-          config = ({
-            ...rest,
-            id,
-            key: `${id}-${i}`,
-            items: items.map((subItem, ix) => renderInput(subItem, ix))
-          });
-          break;
-        default:
-          break;
-      }
-      return (wrapped(<Component {...config} />));
-    }
-    if (id === 'submit') {
-      return wrapped(<Submit key={i} id={id} style={style.submit} {...rest} />);
-    }
-    const { Component, ...REST } = inputComponents.find(({ id: arrayID }) => arrayID === id);
-    return (
-      wrapped(<Component key={i} {...REST} />)
-    );
-  });
-  renderInput.propTypes = {
-    id: PropTypes.string.isRequired,
-    items: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.array
-    ])
-  };
-  renderInput.defaultProps = { items: false };
-
-  return order.map((item, i) => renderInput(item, i));
-  // const nextOrder = [];
-  // order.forEach((item, i) => {
-  //   nextOrder.push(renderInput(item, i));
-  // });
-  // return nextOrder;
-};
-
+// accepts a flat array and props and returns a ready-to-render config for each input
 export const getInputConfig = (props) => {
   const getInputElement = ({
     hidden = false,
@@ -194,6 +132,69 @@ export const getInputConfig = (props) => {
 
   const inputElements = inputs.map(getInputElement);
   return inputElements;
+};
+
+export const getRenderedComponents = ({
+  accordionOpen,
+  onAccordionClick,
+  inputComponents,
+  order,
+  style,
+  wrapped = C => C
+}) => {
+  const renderInput = (({ id, items, ...rest }, i) => {
+    if (items) {
+      let config;
+      let Component;
+      switch (id) {
+        case 'drawer':
+          Component = Drawer;
+          config = ({
+            ...rest,
+            id,
+            key: `${id}-${i}`,
+            isOpen: accordionOpen,
+            items: items.map((subItem, ix) => renderInput(subItem, ix)),
+            onClick: onAccordionClick
+          });
+          break;
+        case 'row':
+          Component = Row;
+          config = ({
+            ...rest,
+            id,
+            key: `${id}-${i}`,
+            items: items.map((subItem, ix) => renderInput(subItem, ix))
+          });
+          break;
+        default:
+          break;
+      }
+      return (wrapped(<Component {...config} />));
+    }
+    if (id === 'submit') {
+      return wrapped(<Submit key={i} id={id} style={style.submit} {...rest} />);
+    }
+    const { Component, ...REST } = inputComponents.find(({ id: arrayID }) => arrayID === id);
+    return (
+      wrapped(<Component key={i} {...REST} />)
+    );
+  });
+  renderInput.propTypes = {
+    id: PropTypes.string.isRequired,
+    items: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.array
+    ])
+  };
+  renderInput.defaultProps = { items: false };
+
+  return order.map((item, i) => renderInput(item, i));
+  // const nextOrder = [];
+  // order.forEach((item, i) => {
+  //   nextOrder.push(renderInput(item, i));
+  // });
+  // return nextOrder;
 };
 
 // No defaults are set here because they are handled in services/forms.js#getCSS

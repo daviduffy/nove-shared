@@ -6,13 +6,16 @@ import { FORM_INPUTS_DEFAULT } from 'nove-common';
 // Internal Dependencies
 import Submit from '../Submit';
 import { customSubmitStyle } from '../../fixtures/forms';
+import { getCSS, getStyles } from '../../services/contactForm';
 
 // not testing 'remote config' because fetch is performed by SignupRetriever
 let wrapper;
 const props = {
-  style: customSubmitStyle,
+  style: getCSS(getStyles(customSubmitStyle)),
   ...FORM_INPUTS_DEFAULT.submit
 };
+
+// console.log(props);
 
 beforeEach(() => {
   wrapper = shallow(<Submit {...props} />);
