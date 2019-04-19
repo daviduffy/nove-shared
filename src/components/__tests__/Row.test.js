@@ -12,7 +12,7 @@ import * as forms from '../../services/contactForm';
 let wrapper;
 const props = { ...customLayout.order[2] };
 
-const hydratedInputs = forms.getHydratedOrder({ order: customLayout.order });
+const hydratedInputs = forms.getHydratedInputs({ order: customLayout.order });
 const renormalizedInputs = forms.renormalizeInputs(hydratedInputs);
 const row = renormalizedInputs.find(({ id }) => id === 'row');
 

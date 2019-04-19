@@ -14,7 +14,7 @@ const denormJSON = require('../../fixtures/denormalizedContactForm.json');
 // basic
 // =================================================================================================
 test('should hydrated inputs with default values and paths', () => {
-  const hydratedOrder = actions.getHydratedOrder({
+  const hydratedOrder = actions.getHydratedInputs({
     types: types.EVENT_TYPES_COMMON,
     order: inputs.FORM_ORDER.FULL
   });
@@ -38,7 +38,7 @@ test('should hydrated inputs with default values and paths', () => {
 });
 
 test('should return flat array of ready-to-render components', () => {
-  const hydratedOrder = actions.getHydratedOrder({
+  const hydratedOrder = actions.getHydratedInputs({
     types: types.EVENT_TYPES_COMMON,
     order: inputs.FORM_ORDER.FULL
   });
@@ -63,7 +63,7 @@ test('should return flat array of ready-to-render components', () => {
 
 test('should return wrapped input components when wrapped func is passed', () => {
   const style = actions.getCSS(actions.getStyles({}));
-  const hydratedOrder = actions.getHydratedOrder({
+  const hydratedOrder = actions.getHydratedInputs({
     types: types.EVENT_TYPES_COMMON,
     order: inputs.FORM_ORDER.FULL
   });
@@ -115,7 +115,7 @@ test('should return wrapped input components when wrapped func is passed', () =>
 // Denormalization and Renormalization
 // =================================================================================================
 test('should hydrate denormalized inputs correctly', () => {
-  const hydratedInputs = actions.getHydratedOrder({ order: denormJSON.order });
+  const hydratedInputs = actions.getHydratedInputs({ order: denormJSON.order });
 
   const [I1, I2, I3, I4, I5, I6] = hydratedInputs;
 
@@ -128,7 +128,7 @@ test('should hydrate denormalized inputs correctly', () => {
 });
 
 test('should structure renormalized inputs correctly', () => {
-  const hydratedInputs = actions.getHydratedOrder({ order: denormJSON.order });
+  const hydratedInputs = actions.getHydratedInputs({ order: denormJSON.order });
   const renormalizedInputs = actions.renormalizeInputs(hydratedInputs);
 
   const [I1, I2, I3, I4] = renormalizedInputs;

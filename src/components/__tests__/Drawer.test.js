@@ -17,7 +17,7 @@ const props = {
   onClick: () => {}
 };
 
-const hydratedInputs = forms.getHydratedOrder({ order: FORM_ORDER.FULL });
+const hydratedInputs = forms.getHydratedInputs({ order: FORM_ORDER.FULL });
 const renormalizedInputs = forms.renormalizeInputs(hydratedInputs);
 const drawer = renormalizedInputs.find(({ id }) => id === 'drawer');
 

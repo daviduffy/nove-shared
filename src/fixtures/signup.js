@@ -23,7 +23,7 @@ const signupMessageConfig = {
 
 const signupContainerDefaultProps = {
   classes: '',
-  // this is not required because defaults are assigned in the getHydratedOrder func
+  // this is not required because defaults are assigned in the getHydratedInputs func
   order: FORM_ORDER.mini,
   signupSuccessButton: 'Okay!',
   signupSuccessHeading: 'Thank you!',

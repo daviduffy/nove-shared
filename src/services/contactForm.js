@@ -11,8 +11,9 @@ import Row from '../components/Row';
 import Submit from '../components/Submit';
 import { shadeColor } from '../utils/utils';
 
-// hydrates the order array with all props for all inputs.
-export const getHydratedOrder = ({ types, order = FORM_ORDER.BASE } = {}) => { // formerly getInputs
+// hydrates the inputs array with all props for all inputs.
+// formerly getInputs
+export const getHydratedInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
   // used to set required and active attributes.
   // forces name and email to be required and active
   const setRequiredDefaults = ({ defaults, id, key }) => {
@@ -138,7 +139,7 @@ export const getRenderedComponents = ({
   accordionOpen,
   onAccordionClick,
   inputComponents,
-  order,
+  order, // renormalized inputs
   style,
   wrapped = C => C
 }) => {
