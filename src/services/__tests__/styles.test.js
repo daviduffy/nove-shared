@@ -72,7 +72,7 @@ test('should change attributes on default inputs', () => {
     ...item,
     label: `hogwash ${item.id}`
   }));
-  const order = getHydratedInputs({ order: customOrder });
+  const order = getHydratedInputs({ inputs: customOrder });
   expect(order).toEqual(expect.arrayContaining([
     expect.objectContaining({
       ...FORM_INPUTS_DEFAULT.name,
@@ -96,7 +96,7 @@ test('should generate custom inputs when present in config', () => {
     placeholder: 'Some dollar amount'
   };
   const customOrder = [...FORM_ORDER.MINI, customInput];
-  const order = getHydratedInputs({ order: customOrder });
+  const order = getHydratedInputs({ inputs: customOrder });
 
   expect(order).toEqual(expect.arrayContaining([
     expect.objectContaining({
@@ -115,7 +115,7 @@ test('should generate custom inputs when present in config', () => {
 });
 
 test('should output default types if no types are specified', () => {
-  const order = getHydratedInputs({ order: FORM_ORDER.FULL });
+  const order = getHydratedInputs({ inputs: FORM_ORDER.FULL });
   const type = order.find(({ id }) => id === 'type');
   expect(type.options).toEqual(EVENT_TYPES_COMMON);
 });
@@ -124,7 +124,7 @@ test('should only output types that are specific by user when specified', () => 
   const types = ['WEDDING'];
   const customOrder = [...FORM_ORDER.FULL];
   customOrder.find(({ id }) => id === 'type').options = types;
-  const order = getHydratedInputs({ order: customOrder, types });
+  const order = getHydratedInputs({ inputs: customOrder, types });
   const type = order.find(({ id }) => id === 'type');
   expect(type.options).toEqual(types);
 });

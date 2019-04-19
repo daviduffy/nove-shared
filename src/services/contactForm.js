@@ -13,7 +13,7 @@ import { shadeColor } from '../utils/utils';
 
 // hydrates the inputs array with all props for all inputs.
 // formerly getInputs
-export const getHydratedInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
+export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
   // used to set required and active attributes.
   // forces name and email to be required and active
   const setRequiredDefaults = ({ defaults, id, key }) => {
@@ -60,8 +60,7 @@ export const getHydratedInputs = ({ types, order = FORM_ORDER.BASE } = {}) => {
   };
 
   // build array from all keys with defaults overridden with any custom attributes
-  const inputs = order.map((obj, index) => getSingleInput(obj, index));
-  return inputs;
+  return inputs.map((obj, index) => getSingleInput(obj, index));
 };
 
 // accepts a flat array and props and returns a ready-to-render config for each input
@@ -139,7 +138,7 @@ export const getRenderedComponents = ({
   accordionOpen,
   onAccordionClick,
   inputComponents,
-  order, // renormalized inputs
+  renormalizedInputs, // renormalized inputs
   style,
   wrapped = C => C
 }) => {
@@ -190,7 +189,7 @@ export const getRenderedComponents = ({
   };
   renderInput.defaultProps = { items: false };
 
-  return order.map((item, i) => renderInput(item, i));
+  return renormalizedInputs.map((item, i) => renderInput(item, i));
   // const nextOrder = [];
   // order.forEach((item, i) => {
   //   nextOrder.push(renderInput(item, i));

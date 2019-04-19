@@ -16,7 +16,7 @@ const denormJSON = require('../../fixtures/denormalizedContactForm.json');
 test('should hydrated inputs with default values and paths', () => {
   const hydratedOrder = actions.getHydratedInputs({
     types: types.EVENT_TYPES_COMMON,
-    order: inputs.FORM_ORDER.FULL
+    inputs: inputs.FORM_ORDER.FULL
   });
 
   const Name = hydratedOrder.find(({ id }) => id === 'name');
@@ -40,7 +40,7 @@ test('should hydrated inputs with default values and paths', () => {
 test('should return flat array of ready-to-render components', () => {
   const hydratedOrder = actions.getHydratedInputs({
     types: types.EVENT_TYPES_COMMON,
-    order: inputs.FORM_ORDER.FULL
+    inputs: inputs.FORM_ORDER.FULL
   });
   const inputComponents = actions.getInputConfig({
     eventDate: null,
@@ -65,7 +65,7 @@ test('should return wrapped input components when wrapped func is passed', () =>
   const style = actions.getCSS(actions.getStyles({}));
   const hydratedOrder = actions.getHydratedInputs({
     types: types.EVENT_TYPES_COMMON,
-    order: inputs.FORM_ORDER.FULL
+    inputs: inputs.FORM_ORDER.FULL
   });
   const spy = jest.fn();
   const wrapped = Component => (
@@ -90,7 +90,7 @@ test('should return wrapped input components when wrapped func is passed', () =>
     accordionOpen: true,
     inputComponents,
     onAccordionClick: () => {},
-    order: renormalizedInputs, // this is awkward
+    renormalizedInputs,
     style,
     wrapped
   });
@@ -112,32 +112,32 @@ test('should return wrapped input components when wrapped func is passed', () =>
 });
 
 
-// Denormalization and Renormalization
+// Renormalization
 // =================================================================================================
-test('should hydrate denormalized inputs correctly', () => {
-  const hydratedInputs = actions.getHydratedInputs({ order: denormJSON.order });
+// test('should hydrate denormalized inputs correctly', () => {
+//   const hydratedInputs = actions.getHydratedInputs({ inputs: forms.customLayout.order });
 
-  const [I1, I2, I3, I4, I5, I6] = hydratedInputs;
+//   const [I1, I2, I3, I4, I5, I6] = hydratedInputs;
 
-  expect(I1).toEqual(expect.objectContaining({ path: '0', required: true }));
-  expect(I2).toEqual(expect.objectContaining({ path: '1', placeholder: 'your@email.com' }));
-  expect(I3).toEqual(expect.objectContaining({ path: '2', id: 'row' }));
-  expect(I4).toEqual(expect.objectContaining({ path: '2/0', label: 'Event Type' }));
-  expect(I5).toEqual(expect.objectContaining({ path: '2/1', placeholder: 'On or around' }));
-  expect(I6).toEqual(expect.objectContaining({ path: '3', id: 'referralSource' }));
-});
+//   expect(I1).toEqual(expect.objectContaining({ path: '0', required: true }));
+//   expect(I2).toEqual(expect.objectContaining({ path: '1', placeholder: 'your@email.com' }));
+//   expect(I3).toEqual(expect.objectContaining({ path: '2', id: 'row' }));
+//   expect(I4).toEqual(expect.objectContaining({ path: '2/0', label: 'Event Type' }));
+//   expect(I5).toEqual(expect.objectContaining({ path: '2/1', placeholder: 'On or around' }));
+//   expect(I6).toEqual(expect.objectContaining({ path: '3', id: 'referralSource' }));
+// });
 
 test('should structure renormalized inputs correctly', () => {
-  const hydratedInputs = actions.getHydratedInputs({ order: denormJSON.order });
+  const hydratedInputs = actions.getHydratedInputs({ inputs: forms.customLayout.order });
   const renormalizedInputs = actions.renormalizeInputs(hydratedInputs);
 
-  const [I1, I2, I3, I4] = renormalizedInputs;
+  const [I1, I2, I3,,I5] = renormalizedInputs;
 
   expect(I1).toEqual(expect.objectContaining({ path: '0', required: true }));
   expect(I2).toEqual(expect.objectContaining({ path: '1', placeholder: 'your@email.com' }));
   expect(I3).toEqual(expect.objectContaining({ path: '2', id: 'row' }));
   expect(I3.items[0]).toEqual(expect.objectContaining({ path: '2/0', label: 'Event Type' }));
   expect(I3.items[1]).toEqual(expect.objectContaining({ path: '2/1', placeholder: 'On or around' }));
-  expect(I4).toEqual(expect.objectContaining({ path: '3', id: 'referralSource' }));
+  expect(I5).toEqual(expect.objectContaining({ path: '4', id: 'referralSource' }));
 });
 

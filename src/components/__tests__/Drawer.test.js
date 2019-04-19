@@ -17,7 +17,7 @@ const props = {
   onClick: () => {}
 };
 
-const hydratedInputs = forms.getHydratedInputs({ order: FORM_ORDER.FULL });
+const hydratedInputs = forms.getHydratedInputs({ inputs: FORM_ORDER.FULL });
 const renormalizedInputs = forms.renormalizeInputs(hydratedInputs);
 const drawer = renormalizedInputs.find(({ id }) => id === 'drawer');
 
@@ -33,7 +33,7 @@ const renderedInputs = forms.getRenderedComponents({
   accordionOpen: false,
   inputComponents,
   onAccordionClick: () => {},
-  order: drawer.items, // this is awkward
+  renormalizedInputs: drawer.items, // this is awkward
   style: {}
 });
 

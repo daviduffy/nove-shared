@@ -12,7 +12,7 @@ import * as forms from '../../services/contactForm';
 let wrapper;
 const props = { ...customLayout.order[2] };
 
-const hydratedInputs = forms.getHydratedInputs({ order: customLayout.order });
+const hydratedInputs = forms.getHydratedInputs({ inputs: customLayout.order });
 const renormalizedInputs = forms.renormalizeInputs(hydratedInputs);
 const row = renormalizedInputs.find(({ id }) => id === 'row');
 
@@ -29,7 +29,7 @@ const renderedInputs = forms.getRenderedComponents({
   accordionOpen: false,
   inputComponents,
   onAccordionClick: () => {},
-  order: row.items, // this is awkward
+  renormalizedInputs: row.items, // this is awkward
   style: {}
 });
 props.items = renderedInputs;
