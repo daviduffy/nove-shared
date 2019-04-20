@@ -31,15 +31,17 @@ export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
     //   attribute = custom[id][key];
     // }
     return attribute;
-  }; 
+  };
 
-  const getSingleInput = ({ id, items, type, ...rest } = {}, index, pathPrefix = '') => {
+  const getSingleInput = ({ id, items, type, label, vanityName, ...rest } = {}, index, pathPrefix = '') => {
+    // debugger;
     const path = `${pathPrefix}${index}`;
 
     // create the full-fledged input
     const input = {
       id,
       path,
+      label: label || vanityName || id || '',
       ...(type ? { type } : {}),
       ...(FORM_INPUTS_DEFAULT[id] || {}),
       ...rest
