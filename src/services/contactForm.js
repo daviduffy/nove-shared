@@ -31,7 +31,7 @@ export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
     //   attribute = custom[id][key];
     // }
     return attribute;
-  };
+  }; 
 
   const getSingleInput = ({ id, items, type, ...rest } = {}, index, pathPrefix = '') => {
     const path = `${pathPrefix}${index}`;
