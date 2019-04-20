@@ -26,15 +26,10 @@ export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
     } else if (defaults[id] && typeof defaults[id][key] === 'boolean') {
       attribute = defaults[id][key];
     }
-    // set required to whatever the custom state is if there is one
-    // if (custom[id] && typeof custom[id][key] === 'boolean') {
-    //   attribute = custom[id][key];
-    // }
     return attribute;
   };
 
   const getSingleInput = ({ id, items, type, label, vanityName, ...rest } = {}, index, pathPrefix = '') => {
-    // debugger;
     const path = `${pathPrefix}${index}`;
 
     // create the full-fledged input
@@ -140,7 +135,7 @@ export const getRenderedComponents = ({
   accordionOpen,
   onAccordionClick,
   inputComponents,
-  renormalizedInputs, // renormalized inputs
+  renormalizedInputs,
   style,
   wrapped = C => C
 }) => {
