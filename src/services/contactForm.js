@@ -339,7 +339,7 @@ export const denormalizeInputs = (arr) => {
 };
 
 // un-nests inputs into flattened array
-const renormalizeInputs = (arr) => {
+export const renormalizeInputs = (arr) => {
   const inputs = [];
   const getNestedInputs = ({ curr }) => {
 
