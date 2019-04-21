@@ -339,7 +339,7 @@ export const denormalizeInputs = (arr) => {
 };
 
 // un-nests inputs into flattened array
-export const renormalizeInputs = (arr) => {
+const renormalizeInputs = (arr) => {
   const inputs = [];
   const getNestedInputs = ({ curr }) => {
 
@@ -348,7 +348,7 @@ export const renormalizeInputs = (arr) => {
 
     // eslint-disable-next-line
     const [L1, L2, L3] = path;
-    let parent;
+    let parent, resetItems;
 
     // top-level item
     if (path.length === 1) {
@@ -356,15 +356,18 @@ export const renormalizeInputs = (arr) => {
 
     // one level of nesting (regular drawer or row)
     } else if (path.length === 2) {
+      if (L2 === 0) resetItems = true;
       parent = inputs[L1];
 
     // two levels of nesting (row inside of drawer)
     } else {
+      if (L3 === 0) resetItems = true;
       parent = inputs[L1].items[L2];
     }
 
     // push current into correct array within parent element
-    const items = [...(parent.items || []), curr];
+    // resetItems is used to ensures nested array is reset to [] before reconstituting
+    const items = [...(resetItems ? [] : parent.items), curr];
     parent.items = items;
   };
 
