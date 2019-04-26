@@ -31,6 +31,16 @@ export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
 
   const getSingleInput = ({ id, items, type, label, vanityName, ...rest } = {}, index, pathPrefix = '') => {
     const path = `${pathPrefix}${index}`;
+    const defaults = FORM_INPUTS_DEFAULT[id] || {};
+    let defaultLabel;
+    // debugger;
+    if (label === undefined && defaults.label) {
+      defaultLabel = defaults.label;
+    } else if (rest.name) {
+      defaultLabel = titleize(rest.name);
+    } else {
+      defaultLabel = id;
+    }
 
     // create the full-fledged input
     const input = {
@@ -38,7 +48,7 @@ export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
       ...(type ? { type } : {}),
       ...(FORM_INPUTS_DEFAULT[id] || {}), // default label, placeholder, type, options
       path,
-      ...(label !== undefined ? { label } : {}), // overwrite default label if supplied by user
+      ...(label !== undefined ? { label } : { label: defaultLabel }), // overwrite default label if supplied by user
       ...rest
     };
 
