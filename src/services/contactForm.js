@@ -9,7 +9,7 @@ import InputSelect from '../components/InputSelect';
 import InputTextarea from '../components/InputTextarea';
 import Row from '../components/Row';
 import Submit from '../components/Submit';
-import { shadeColor } from '../utils/utils';
+import { shadeColor, titleize } from '../utils/utils';
 
 // hydrates the inputs array with all props for all inputs.
 // formerly getInputs
