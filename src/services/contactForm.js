@@ -35,13 +35,14 @@ export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
     // create the full-fledged input
     const input = {
       id,
-      path,
-      label: label || vanityName || id || '',
       ...(type ? { type } : {}),
-      ...(FORM_INPUTS_DEFAULT[id] || {}),
+      ...(FORM_INPUTS_DEFAULT[id] || {}), // default label, placeholder, type, options
+      path,
+      ...(label !== undefined ? { label } : {}), // overwrite default label if supplied by user
       ...rest
     };
-      // if the field is hidden, never have it be required
+
+    // if the field is hidden, never have it be required
     const required = rest.hidden ? false : setRequiredDefaults({ defaults: FORM_INPUTS_DEFAULT, id, key: 'required' });
 
     // set values if this is an controllable input, and if default value is supplied
