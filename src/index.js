@@ -7,7 +7,7 @@ import Row from './components/Row';
 import Signup from './components/Signup';
 import Submit from './components/Submit';
 
-import { FORM_INPUTS_DEFAULT, FORM_ORDER } from './constants/formInputs';
+import { FORM_INPUTS_DEFAULT, FORM_ORDER, FORM_INPUT_TYPES } from './constants/formInputs';
 import { EVENT_TYPES_COMMON, EVENT_TYPES_ALL } from './constants/eventTypes';
 import { STATES } from './constants/states';
 import { FORM_STYLES_DEFAULT, FORM_BORDER_PRESETS } from './constants/styles';
@@ -22,6 +22,7 @@ const obj = {
   FORM_STYLES_DEFAULT,
   FORM_BORDER_PRESETS,
   FORM_INPUTS_DEFAULT,
+  FORM_INPUT_TYPES,
   FORM_ORDER,
   STATES,
 
