@@ -355,10 +355,10 @@ export const renormalizeInputs = (arr) => {
   const getNestedInputs = ({ curr }) => {
 
     // get path to final resting place of current input
-    const path = curr.path.split('/').map(it => parseInt(it, 10));
+    const path = curr.path.split('/').map((val, i) => i % 2 === 0 ? parseInt(val, 10) : val);
 
     // eslint-disable-next-line
-    const [L1, L2, L3] = path;
+    const [L1, rootParent, L2, parent2, L3] = path;
     let parent, resetItems;
 
     // top-level item
@@ -366,7 +366,7 @@ export const renormalizeInputs = (arr) => {
       return inputs.push(curr);
 
     // one level of nesting (regular drawer or row)
-    } else if (path.length === 2) {
+    } else if (path.length === 3) {
       if (L2 === 0) resetItems = true;
       parent = inputs[L1];
 

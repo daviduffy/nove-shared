@@ -76,6 +76,18 @@ export const FORM_INPUTS_DEFAULT = {
   submit
 };
 
+export const FORM_INPUT_TYPES = [
+  // these have to be doubled up because otherwise the InputSelect will capitalize them
+  ['currency', 'currency'],
+  ['date', 'date'],
+  ['email', 'email'],
+  ['number', 'number'],
+  ['phone', 'phone'],
+  ['select', 'select'],
+  ['text', 'text'],
+  ['textarea', 'textarea']
+];
+
 const PRIMITIVE = [
   { id: 'name', path: '0' },
   { id: 'email', path: '1' }
