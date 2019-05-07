@@ -16,6 +16,14 @@ export const defaultStyles = {
   width: '560px'
 };
 
+export const customStyles = {
+  inputBackgroundColor: 'transparent',
+  negativeColor: '#ff9900',
+  negativeColorBg: 'red', // automatic
+  placeholderColor: 'pink', // doesn't work yet
+  width: '100%'
+};
+
 export const normal = {
   name: 'normal',
   selector: '#nove_signup',
