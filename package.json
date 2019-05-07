@@ -6,7 +6,7 @@
   "repository": "https://github.com/daviduffy/nove-components.git",
   "author": "David Duffy <daviduffy1@gmail.com>",
   "scripts": {
-    "build": "babel src -d dist --ignore 'src/**/*.spec.js','src/**/*.test.js','src/fixtures','src/setupTests.js'",
+    "build": "babel src -d dist --ignore 'src/**/*.spec.js','src/**/*.test.js','src/setupTests.js'",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "prepare": "yarn run build"
   },
@@ -23,7 +23,6 @@
     "eslint-plugin-react": "7.7.0",
     "eslint_d": "5.2.2",
     "glamor": "^2.20.40",
-    "nove-common": "https://github.com/daviduffy/nove-common.git#e46db6aa5609ee23356959c44b1c07f5e24abdaa",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-datepicker": "2.3.0",

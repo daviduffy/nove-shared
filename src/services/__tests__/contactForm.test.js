@@ -3,13 +3,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 // Internal Dependencies
-import InputText from '../../components/InputText';
 import * as actions from '../contactForm';
 import * as types from '../../constants/eventTypes';
 import * as inputs from '../../constants/formInputs';
 import * as forms from '../../fixtures/forms';
-
-const denormJSON = require('../../fixtures/denormalizedContactForm.json');
 
 // basic
 // =================================================================================================
@@ -114,19 +111,6 @@ test('should return wrapped input components when wrapped func is passed', () =>
 
 // Renormalization
 // =================================================================================================
-// test('should hydrate denormalized inputs correctly', () => {
-//   const hydratedInputs = actions.getHydratedInputs({ inputs: forms.customLayout.order });
-
-//   const [I1, I2, I3, I4, I5, I6] = hydratedInputs;
-
-//   expect(I1).toEqual(expect.objectContaining({ path: '0', required: true }));
-//   expect(I2).toEqual(expect.objectContaining({ path: '1', placeholder: 'your@email.com' }));
-//   expect(I3).toEqual(expect.objectContaining({ path: '2', id: 'row' }));
-//   expect(I4).toEqual(expect.objectContaining({ path: '2/0', label: 'Event Type' }));
-//   expect(I5).toEqual(expect.objectContaining({ path: '2/1', placeholder: 'On or around' }));
-//   expect(I6).toEqual(expect.objectContaining({ path: '3', id: 'referralSource' }));
-// });
-
 test('should structure renormalized inputs correctly', () => {
   const hydratedInputs = actions.getHydratedInputs({ inputs: forms.customLayout.order });
   const renormalizedInputs = actions.renormalizeInputs(hydratedInputs);

@@ -1,4 +1,5 @@
-import { FORM_ORDER, EVENT_TYPES_COMMON } from 'nove-common';
+import { FORM_ORDER } from '../constants/formInputs';
+import { EVENT_TYPES_COMMON } from '../constants/eventTypes';
 import { normal } from './forms';
 
 const config = {

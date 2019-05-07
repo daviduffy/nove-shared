@@ -1,4 +1,4 @@
-import { FORM_INPUTS_DEFAULT, FORM_ORDER } from '../constants/formInputs';
+import { FORM_ORDER } from '../constants/formInputs';
 
 export const defaultStyles = {
   borderStyle: 'full',

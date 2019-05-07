@@ -1,7 +1,8 @@
 // External Dependencies
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FORM_INPUTS_DEFAULT } from 'nove-common';
+import { FORM_INPUTS_DEFAULT } from '../../constants/formInputs';
+
 
 // Internal Dependencies
 import Submit from '../Submit';

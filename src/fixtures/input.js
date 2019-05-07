@@ -1,4 +1,4 @@
-import { STATES } from 'nove-common';
+import { STATES } from '../constants/states';
 
 export const text = {
   id: 'name',
