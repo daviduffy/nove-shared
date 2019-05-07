@@ -1,4 +1,4 @@
-import { FORM_INPUTS_DEFAULT, FORM_ORDER } from 'nove-common';
+import { FORM_INPUTS_DEFAULT, FORM_ORDER } from '../constants/formInputs';
 
 const defaultStyles = {
   borderStyle: 'full',

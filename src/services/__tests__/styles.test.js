@@ -1,8 +1,5 @@
 import { getStyles, getHydratedInputs } from '../contactForm';
-import {
-  FORM_INPUTS_DEFAULT,
-  FORM_ORDER
-} from '../../constants/formInputs';
+import { FORM_INPUTS_DEFAULT, FORM_ORDER } from '../../constants/formInputs';
 import { EVENT_TYPES_COMMON } from '../../constants/eventTypes';
 import { FORM_STYLES_DEFAULT } from '../../constants/styles';
 
@@ -81,35 +78,6 @@ test('should change attributes on default inputs', () => {
     expect.objectContaining({
       ...FORM_INPUTS_DEFAULT.email,
       label: 'hogwash email'
-    })
-  ]));
-});
-
-test('should generate custom inputs when present in config', () => {
-  const uuid = '3af8be16-638b-432b-899d-c526743bc7c9';
-  const customInput = {
-    id: uuid,
-    name: 'some-dollar-amount',
-    type: 'CURRENCY',
-    vanityName: 'Some Dollar Amount',
-    label: 'Some dollar amount',
-    placeholder: 'Some dollar amount'
-  };
-  const customOrder = [...FORM_ORDER.MINI, customInput];
-  const order = getHydratedInputs({ inputs: customOrder });
-
-  expect(order).toEqual(expect.arrayContaining([
-    expect.objectContaining({
-      ...FORM_INPUTS_DEFAULT.name
-    }),
-    expect.objectContaining({
-      ...FORM_INPUTS_DEFAULT.email
-    }),
-    expect.objectContaining({
-      ...FORM_INPUTS_DEFAULT.message
-    }),
-    expect.objectContaining({
-      ...customInput
     })
   ]));
 });

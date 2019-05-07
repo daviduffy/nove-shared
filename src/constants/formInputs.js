@@ -108,8 +108,8 @@ const FULL = [
   { id: 'eventDate', path: '3' },
   { id: 'referralSource', path: '4' },
   { id: 'drawer', path: '5' },
-  { id: 'eventVenue', path: '5/0' },
-  { id: 'eventLocale', path: '5/1' },
+  { id: 'eventVenue', path: '5/drawer/0' },
+  { id: 'eventLocale', path: '5/drawer/1' },
   { id: 'message', path: '6' },
   { id: 'submit', path: '7' }
 ];
