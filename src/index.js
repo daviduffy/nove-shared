@@ -14,13 +14,16 @@ import { FORM_STYLES_DEFAULT, FORM_BORDER_PRESETS } from './constants/styles';
 
 import * as utils from './utils/utils';
 import * as contactFormServices from './services/contactForm';
+import * as FORM_FIXTURES from './fixtures/forms';
 
 const obj = {
+
   // CONSTANTS
   EVENT_TYPES_ALL,
   EVENT_TYPES_COMMON,
   FORM_STYLES_DEFAULT,
   FORM_BORDER_PRESETS,
+  FORM_FIXTURES,
   FORM_INPUTS_DEFAULT,
   FORM_INPUT_TYPES,
   FORM_ORDER,

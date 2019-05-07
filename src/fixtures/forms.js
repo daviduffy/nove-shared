@@ -1,6 +1,6 @@
 import { FORM_INPUTS_DEFAULT, FORM_ORDER } from '../constants/formInputs';
 
-const defaultStyles = {
+export const defaultStyles = {
   borderStyle: 'full',
   borderColor: '#b3b3b3',
   drawerBackgroundColor: '#eeeeee',
@@ -16,7 +16,7 @@ const defaultStyles = {
   width: '560px'
 };
 
-const normal = {
+export const normal = {
   name: 'normal',
   selector: '#nove_signup',
   types: ['ENGAGEMENT', 'WEDDING'],
@@ -29,7 +29,8 @@ const getLockedToWeddingOrder = (arr) => {
   newItem.hidden = true;
   return arr.map(item => item.id === 'type' ? newItem : item);
 };
-const lockedToWeddings = {
+
+export const lockedToWeddings = {
   name: 'lockedToWeddings',
   order: getLockedToWeddingOrder(FORM_ORDER.FULL),
   selector: '#nove_signup',
@@ -38,7 +39,8 @@ const lockedToWeddings = {
 };
 
 const getMiniOrder = arr => arr.map(item => ({ ...item, label: '' }));
-const mini = {
+
+export const mini = {
   name: 'mini',
   order: getMiniOrder(FORM_ORDER.MINI),
   selector: '#nove_signup',
@@ -46,7 +48,7 @@ const mini = {
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
-const customLayout = {
+export const customLayout = {
   name: 'customLayout',
   order: [
     { id: 'name', path: '0' },
@@ -66,7 +68,7 @@ const customLayout = {
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
-const nestedRow = {
+export const nestedRow = {
   name: 'customLayout',
   order: [
     { id: 'name', path: '0' },
@@ -93,8 +95,7 @@ const nestedRow = {
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
-
-const stuffedDrawer = {
+export const stuffedDrawer = {
   name: 'stuffedDrawer',
   order: [
     { id: 'name', path: '0' },
@@ -113,7 +114,7 @@ const stuffedDrawer = {
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
-const customAttributeAndBudget = {
+export const customAttributeAndBudget = {
   name: 'form with budget & custom',
   order: [
     { id: 'name', path: '0' },
@@ -136,7 +137,7 @@ const customAttributeAndBudget = {
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
-const customDrawerText = {
+export const customDrawerText = {
   name: 'fixed custom fields',
   order: [
     { id: 'name', path: '0' },
@@ -171,32 +172,17 @@ const customDrawerText = {
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
-const customSubmitStyle = {
+export const customSubmitStyle = {
   borderStyle: 'underline',
   borderColor: '#ff9900',
   width: '100%'
 };
 
-const customSignupSuccessText = {
+export const customSignupSuccessText = {
   signupSuccessButton: 'word',
   signupSuccessHeading: 'like,',
   signupSuccessMessage: 'thanks, bro',
   selector: '#nove_signup',
   types: ['WEDDING', 'COMMERCIAL', 'NEWBORN', 'ENGAGEMENT'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
-};
-
-export {
-  mini,
-  normal,
-  customLayout,
-  customSubmitStyle,
-  customAttributeAndBudget,
-  customSignupSuccessText,
-  customDrawerText,
-  defaultStyles,
-  lockedToWeddings,
-  nestedRow,
-  stuffedDrawer,
-  FORM_INPUTS_DEFAULT as default
 };
