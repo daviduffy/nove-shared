@@ -77,7 +77,7 @@ export const customLayout = {
 };
 
 export const nestedRow = {
-  name: 'customLayout',
+  name: 'nestedRow',
   order: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -85,15 +85,15 @@ export const nestedRow = {
     { id: 'type', path: '2/row/0' },
     { id: 'eventDate', path: '2/row/1' },
     { id: 'drawer', path: '3' },
-    { id: 'row', path: '3/drawer/0', type: '2:1x2' },
-    { id: 'eventVenue', path: '3/drawer/0/row/0' },
-    { id: 'eventLocale', path: '3/drawer/0/row/1' },
     {
       id: 'disconnected',
       path: '3/drawer/1',
       label: 'Dead-end input',
       placeholder: 'Enter a random number'
     },
+    { id: 'row', path: '3/drawer/0', type: '2:1x2' },
+    { id: 'eventVenue', path: '3/drawer/0/row/0' },
+    { id: 'eventLocale', path: '3/drawer/0/row/1' },
     { id: 'referralSource', path: '4' },
     { id: 'message', path: '5' },
     { id: 'submit', path: '6' }
