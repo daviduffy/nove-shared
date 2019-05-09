@@ -87,13 +87,13 @@ export const nestedRow = {
     { id: 'drawer', path: '3' },
     {
       id: 'disconnected',
-      path: '3/drawer/1',
+      path: '3/drawer/0',
       label: 'Dead-end input',
       placeholder: 'Enter a random number'
     },
-    { id: 'row', path: '3/drawer/0', type: '2:1x2' },
-    { id: 'eventVenue', path: '3/drawer/0/row/0' },
-    { id: 'eventLocale', path: '3/drawer/0/row/1' },
+    { id: 'row', path: '3/drawer/1', type: '2:1x2' },
+    { id: 'eventVenue', path: '3/drawer/1/row/0' },
+    { id: 'eventLocale', path: '3/drawer/1/row/1' },
     { id: 'referralSource', path: '4' },
     { id: 'message', path: '5' },
     { id: 'submit', path: '6' }
