@@ -28,7 +28,6 @@ const inputComponents = forms.getInputConfig({
   inputs: hydratedInputs,
   windowWidth: 1000
 });
-// console.log(drawer);
 const renderedInputs = forms.getRenderedComponents({
   accordionOpen: false,
   inputComponents,

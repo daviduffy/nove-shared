@@ -58,6 +58,7 @@ export const mini = {
 
 export const customLayout = {
   name: 'customLayout',
+  id: 'customLayout',
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -78,6 +79,7 @@ export const customLayout = {
 
 export const nestedRow = {
   name: 'nestedRow',
+  id: 'nestedRow',
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -105,6 +107,7 @@ export const nestedRow = {
 
 export const stuffedDrawer = {
   name: 'stuffedDrawer',
+  id: 'stuffedDrawer',
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -124,6 +127,7 @@ export const stuffedDrawer = {
 
 export const customAttributeAndBudget = {
   name: 'form with budget & custom',
+  id: 'customAttributeAndBudget',
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -147,6 +151,7 @@ export const customAttributeAndBudget = {
 
 export const customDrawerText = {
   name: 'fixed custom fields',
+  id: 'customDrawerText',
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -174,6 +179,31 @@ export const customDrawerText = {
     { id: 'message', path: '7' },
     { id: 'budget', path: '8' },
     { id: 'submit', path: '9' }
+  ],
+  selector: '#nove_signup',
+  types: ['WEDDING', 'COMMERCIAL', 'NEWBORN', 'ENGAGEMENT'],
+  userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
+};
+
+export const doubledAtLastInput = {
+  name: 'doubled at last input',
+  id: 'doubledAtLastInput',
+  inputs: [
+    { id: 'name', path: '0' },
+    { id: 'email', path: '1' },
+    { id: 'row', path: '2', type: '2:1x2' },
+    { id: 'type', path: '2/row/0' },
+    { id: 'eventDate', path: '2/row/1' },
+    { id: 'drawer', path: '3' },
+    { id: 'row', path: '3/drawer/0' },
+    { id: 'eventLocale', path: '3/drawer/0/row/0' },
+    { id: 'eventVenue', path: '3/drawer/0/row/1' },
+    { id: 'referralSource', path: '3/drawer/1' },
+    { id: 'message', path: '4' },
+    { id: 'row', path: '5' },
+    { id: '14112e56-b1a9-4b0a-83ca-976579f70474', name: 'special-field', path: '5/row/0', type: 'text', vanityName: 'Special field' },
+    { id: 'c2db3801-6ac8-411f-addf-72bd02ca00e6', label: 'Estimated Budget', path: '5/row/1', placeholder: '$XX,XXX', type: 'currency' },
+    { id: 'submit', path: '6' }
   ],
   selector: '#nove_signup',
   types: ['WEDDING', 'COMMERCIAL', 'NEWBORN', 'ENGAGEMENT'],

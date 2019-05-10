@@ -16,8 +16,6 @@ const props = {
   ...FORM_INPUTS_DEFAULT.submit
 };
 
-// console.log(props);
-
 beforeEach(() => {
   wrapper = shallow(<Submit {...props} />);
 });
