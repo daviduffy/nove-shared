@@ -40,7 +40,7 @@ const getLockedToWeddingOrder = (arr) => {
 
 export const lockedToWeddings = {
   name: 'lockedToWeddings',
-  order: getLockedToWeddingOrder(FORM_ORDER.FULL),
+  inputs: getLockedToWeddingOrder(FORM_ORDER.FULL),
   selector: '#nove_signup',
   types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
@@ -50,7 +50,7 @@ const getMiniOrder = arr => arr.map(item => ({ ...item, label: '' }));
 
 export const mini = {
   name: 'mini',
-  order: getMiniOrder(FORM_ORDER.MINI),
+  inputs: getMiniOrder(FORM_ORDER.MINI),
   selector: '#nove_signup',
   types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
@@ -58,7 +58,7 @@ export const mini = {
 
 export const customLayout = {
   name: 'customLayout',
-  order: [
+  inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
     { id: 'row', type: '2:1x2', path: '2' },
@@ -78,7 +78,7 @@ export const customLayout = {
 
 export const nestedRow = {
   name: 'nestedRow',
-  order: [
+  inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
     { id: 'row', type: '2:1x2', path: '2' },
@@ -105,7 +105,7 @@ export const nestedRow = {
 
 export const stuffedDrawer = {
   name: 'stuffedDrawer',
-  order: [
+  inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
     { id: 'drawer', path: '2' },
@@ -124,7 +124,7 @@ export const stuffedDrawer = {
 
 export const customAttributeAndBudget = {
   name: 'form with budget & custom',
-  order: [
+  inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
     { id: 'budget', path: '2' },
@@ -147,7 +147,7 @@ export const customAttributeAndBudget = {
 
 export const customDrawerText = {
   name: 'fixed custom fields',
-  order: [
+  inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
     { id: 'type', path: '2' },
