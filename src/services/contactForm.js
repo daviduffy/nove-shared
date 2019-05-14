@@ -102,7 +102,7 @@ export const getInputConfig = (props) => {
         return ({
           ...config,
           Component: InputDate,
-          error: (required && props.formError && props.eventDate === undefined),
+          error: (!!required && !!props.formError && props.eventDate === undefined),
           onDateChange: props.onDateChange,
           value: props.eventDate,
           windowWidth: props.windowWidth
