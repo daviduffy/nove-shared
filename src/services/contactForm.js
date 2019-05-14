@@ -16,24 +16,25 @@ import { shadeColor, titleize } from '../utils/utils';
 export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
   // used to set required and active attributes.
   // forces name and email to be required and active
-  const setRequiredDefaults = ({ defaults, id, key }) => {
-    // start with false just in case required isn't included in defaults and is omitted in custom
-    let attribute = false;
+  const setRequiredDefaults = ({ id, required = false }) => {
     // these are always active and required
     if (['name', 'email'].includes(id)) {
-      attribute = true;
+      return true;
+    // if the config passed that this input is required, require it
+    } else if (required === true) {
+      return true;
     // use config for any keys that aren't in the array above
-    } else if (defaults[id] && typeof defaults[id][key] === 'boolean') {
-      attribute = defaults[id][key];
+    } else if (FORM_INPUTS_DEFAULT[id] && typeof FORM_INPUTS_DEFAULT[id].required === 'boolean') {
+      return FORM_INPUTS_DEFAULT[id].required;
     }
-    return attribute;
+    // otherwise it probably ain't required
+    return false;
   };
 
   const getSingleInput = ({ id, items, type, label, vanityName, ...rest } = {}, index, pathPrefix = '') => {
     const path = `${pathPrefix}${index}`;
     const defaults = FORM_INPUTS_DEFAULT[id] || {};
     let defaultLabel;
-    // debugger;
     if (label === undefined && defaults.label) {
       defaultLabel = defaults.label;
     } else if (rest.name) {
@@ -53,7 +54,7 @@ export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
     };
 
     // if the field is hidden, never have it be required
-    const required = rest.hidden ? false : setRequiredDefaults({ defaults: FORM_INPUTS_DEFAULT, id, key: 'required' });
+    const required = rest.hidden ? false : setRequiredDefaults({ id, required: rest.required });
 
     // set values if this is an controllable input, and if default value is supplied
     if (!['row', 'drawer', 'submit'].includes(id)) {
