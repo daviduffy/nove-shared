@@ -54,8 +54,8 @@ test('should display normal drawer label and placeholder', () => {
 });
 
 test('should display custom drawer placeholder text and no label', () => {
-  const renormalizedInputs = forms.renormalizeInputs(customDrawerText.order);
-  const drawer = customDrawerText.order.find(({ id }) => id === 'drawer');
+  const renormalizedInputs = forms.renormalizeInputs(customDrawerText.inputs);
+  const drawer = customDrawerText.inputs.find(({ id }) => id === 'drawer');
   const customProps = { ...props, placeholder: drawer.placeholder, label: '' };
   wrapper = shallow(<Drawer {...customProps} />);
   // should not output label if label set to empty string
@@ -68,8 +68,8 @@ test('should show items within drawer', () => {
 });
 
 test('should set drawer height correctly when multiple items are in it', () => {
-  const renormalizedInputs = forms.renormalizeInputs(stuffedDrawer.order);
-  const drawer = stuffedDrawer.order.find(({ id }) => id === 'drawer');
+  const renormalizedInputs = forms.renormalizeInputs(stuffedDrawer.inputs);
+  const drawer = stuffedDrawer.inputs.find(({ id }) => id === 'drawer');
   const customProps = { ...props, ...drawer };
   const maxHeightWhenOpen = (drawer.items.length * 110) + 24;
   wrapper = shallow(<Drawer {...customProps} />);

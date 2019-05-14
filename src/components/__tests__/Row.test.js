@@ -10,9 +10,9 @@ import * as forms from '../../services/contactForm';
 
 // not testing 'remote config' because fetch is performed by SignupRetriever
 let wrapper;
-const props = { ...customLayout.order[2] };
+const props = { ...customLayout.inputs[2] };
 
-const hydratedInputs = forms.getHydratedInputs({ inputs: customLayout.order });
+const hydratedInputs = forms.getHydratedInputs({ inputs: customLayout.inputs });
 const renormalizedInputs = forms.renormalizeInputs(hydratedInputs);
 const row = renormalizedInputs.find(({ id }) => id === 'row');
 

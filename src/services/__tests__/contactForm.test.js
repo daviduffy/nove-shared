@@ -112,7 +112,7 @@ test('should return wrapped input components when wrapped func is passed', () =>
 // Renormalization
 // =================================================================================================
 test('should structure renormalized inputs correctly', () => {
-  const hydratedInputs = actions.getHydratedInputs({ inputs: forms.customLayout.order });
+  const hydratedInputs = actions.getHydratedInputs({ inputs: forms.customLayout.inputs });
   const renormalizedInputs = actions.renormalizeInputs(hydratedInputs);
 
   const [I1, I2, I3,, I5] = renormalizedInputs;
