@@ -15,6 +15,7 @@ import { FORM_STYLES_DEFAULT, FORM_BORDER_PRESETS } from './constants/styles';
 import * as utils from './utils/utils';
 import * as contactFormServices from './services/contactForm';
 import * as FORM_FIXTURES from './fixtures/forms';
+import * as SIGNUP from './fixtures/signup';
 import USER from './fixtures/user';
 
 const obj = {
@@ -29,6 +30,7 @@ const obj = {
   FORM_INPUT_TYPES,
   FORM_ORDER,
   STATES,
+  SIGNUP,
   USER,
 
   // Components

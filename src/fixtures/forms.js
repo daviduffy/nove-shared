@@ -28,7 +28,8 @@ export const normal = {
   name: 'normal',
   selector: '#nove_signup',
   types: ['ENGAGEMENT', 'WEDDING'],
-  userID: '__HZV4GVidAWX0LmJtLUhZBd4vKKj2'
+  userID: '__HZV4GVidAWX0LmJtLUhZBd4vKKj2',
+  inputs: FORM_ORDER.FULL
 };
 
 const getLockedToWeddingOrder = (arr) => {
