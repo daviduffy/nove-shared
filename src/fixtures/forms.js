@@ -1,5 +1,7 @@
 import { FORM_ORDER } from '../constants/formInputs';
 
+const version = '4.0.0';
+
 export const defaultStyles = {
   borderStyle: 'full',
   borderColor: '#b3b3b3',
@@ -60,7 +62,7 @@ export const mini = {
 export const customLayout = {
   name: 'customLayout',
   id: 'customLayout',
-  version: '4.0.0',
+  version,
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -82,7 +84,7 @@ export const customLayout = {
 export const nestedRow = {
   name: 'nestedRow',
   id: 'nestedRow',
-  version: '4.0.0',
+  version,
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -111,7 +113,7 @@ export const nestedRow = {
 export const stuffedDrawer = {
   name: 'stuffedDrawer',
   id: 'stuffedDrawer',
-  version: '4.0.0',
+  version,
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -132,7 +134,7 @@ export const stuffedDrawer = {
 export const customAttributeAndBudget = {
   name: 'form with budget & custom',
   id: 'customAttributeAndBudget',
-  version: '4.0.0',
+  version,
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -157,7 +159,7 @@ export const customAttributeAndBudget = {
 export const customDrawerText = {
   name: 'fixed custom fields',
   id: 'customDrawerText',
-  version: '4.0.0',
+  version,
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
@@ -194,7 +196,7 @@ export const customDrawerText = {
 export const doubledAtLastInput = {
   name: 'doubled at last input',
   id: 'doubledAtLastInput',
-  version: '4.0.0',
+  version,
   inputs: [
     { id: 'name', path: '0' },
     { id: 'email', path: '1' },
