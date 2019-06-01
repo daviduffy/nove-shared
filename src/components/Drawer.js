@@ -30,6 +30,7 @@ const Drawer = ({
       >
         <div className="Acrd__cont">
           {
+            items.length > 0 &&
             items.map(item => item)
           }
         </div>
@@ -39,12 +40,13 @@ const Drawer = ({
 );
 Drawer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array,
   label: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   placeholder: PropTypes.string
 };
 Drawer.defaultProps = {
+  items: [],
   label: '',
   placeholder: ''
 };

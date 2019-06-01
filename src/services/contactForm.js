@@ -152,7 +152,7 @@ export const getRenderedComponents = ({
   wrapped = C => C
 }) => {
   const renderInput = (({ id, items, ...rest }, i) => {
-    if (items) {
+    if (['drawer', 'row'].includes(id)) {
       let config;
       let Component;
       switch (id) {
@@ -163,9 +163,9 @@ export const getRenderedComponents = ({
             id,
             key: `${id}-${i}`,
             isOpen: accordionOpen,
-            items: items.map((subItem, ix) => renderInput(subItem, ix)),
             onClick: onAccordionClick
           });
+          if (items && items.length > 0) config.items = items.map((subItem, ix) => renderInput(subItem, ix));
           break;
         case 'row':
           Component = Row;
@@ -197,13 +197,7 @@ export const getRenderedComponents = ({
     ])
   };
   renderInput.defaultProps = { items: false };
-
   return renormalizedInputs.map((item, i) => renderInput(item, i));
-  // const nextOrder = [];
-  // order.forEach((item, i) => {
-  //   nextOrder.push(renderInput(item, i));
-  // });
-  // return nextOrder;
 };
 
 // No defaults are set here because they are handled in services/forms.js#getCSS
