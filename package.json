@@ -1,6 +1,6 @@
 {
   "name": "nove-shared",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "shared components for nove.io",
   "main": "dist/index.js",
   "repository": "https://github.com/daviduffy/nove-components.git",

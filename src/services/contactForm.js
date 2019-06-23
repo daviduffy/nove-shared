@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FORM_ORDER, FORM_INPUTS_DEFAULT } from '../constants/formInputs';
+import { EVENT_TYPES_COMMON } from '../constants/eventTypes';
 
 import Drawer from '../components/Drawer';
 import InputDate from '../components/InputDate';
@@ -13,7 +14,7 @@ import { shadeColor, titleize } from '../utils/utils';
 
 // hydrates the inputs array with all props for all inputs.
 // formerly getInputs
-export const getHydratedInputs = ({ types, inputs = FORM_ORDER.BASE } = {}) => {
+export const getHydratedInputs = ({ types = EVENT_TYPES_COMMON, inputs = FORM_ORDER.BASE } = {}) => {
   // used to set required and active attributes.
   // forces name and email to be required and active
   const setRequiredDefaults = ({ id, required = false }) => {
