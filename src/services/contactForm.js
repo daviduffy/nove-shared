@@ -14,7 +14,7 @@ import { shadeColor, titleize } from '../utils/utils';
 
 // hydrates the inputs array with all props for all inputs.
 // formerly getInputs
-export const getHydratedInputs = ({ types = EVENT_TYPES_COMMON, inputs = FORM_ORDER.BASE } = {}) => {
+export const getHydratedInputs = ({ inputs = FORM_ORDER.BASE } = {}) => {
   // used to set required and active attributes.
   // forces name and email to be required and active
   const setRequiredDefaults = ({ id, required = false }) => {
@@ -62,9 +62,6 @@ export const getHydratedInputs = ({ types = EVENT_TYPES_COMMON, inputs = FORM_OR
       input.value = input.type === 'date' ? undefined : (rest.value || '');
       input.required = required;
     }
-
-    // set types to config types instead of defaults
-    if (id === 'type' && !input.options && types) input.options = types;
 
     return input;
   };

@@ -29,7 +29,6 @@ export const customStyles = {
 export const normal = {
   name: 'normal',
   selector: '#nove_signup',
-  types: ['ENGAGEMENT', 'WEDDING'],
   userID: '__HZV4GVidAWX0LmJtLUhZBd4vKKj2',
   inputs: FORM_ORDER.FULL
 };
@@ -45,7 +44,6 @@ export const lockedToWeddings = {
   name: 'lockedToWeddings',
   inputs: getLockedToWeddingOrder(FORM_ORDER.FULL),
   selector: '#nove_signup',
-  types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
@@ -55,7 +53,6 @@ export const mini = {
   name: 'mini',
   inputs: getMiniOrder(FORM_ORDER.MINI),
   selector: '#nove_signup',
-  types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
@@ -77,7 +74,6 @@ export const customLayout = {
     { id: 'submit', path: '6' }
   ],
   selector: '#nove_signup',
-  types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
@@ -106,7 +102,6 @@ export const nestedRow = {
     { id: 'submit', path: '6' }
   ],
   selector: '#nove_signup',
-  types: ['ENGAGEMENT', 'WEDDING', 'MATERNITY'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
@@ -140,6 +135,7 @@ export const customAttributeAndBudget = {
     { id: 'email', path: '1' },
     { id: 'budget', path: '2' },
     {
+      // this is a custom field that was created in settings. this is not an orphan
       id: '14112e56-b1a9-4b0a-83ca-976579f70474',
       path: '3',
       active: true,
@@ -152,7 +148,6 @@ export const customAttributeAndBudget = {
     { id: 'submit', path: '4' }
   ],
   selector: '#nove_signup',
-  types: ['WEDDING', 'COMMERCIAL', 'NEWBORN', 'ENGAGEMENT'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
@@ -173,6 +168,7 @@ export const customDrawerText = {
       placeholder: 'Enter more information'
     },
     {
+      // this is a custom field that was created in settings. this is not an orphan
       id: '14112e56-b1a9-4b0a-83ca-976579f70474',
       path: '5/drawer/0',
       name: 'special-field',
@@ -189,7 +185,6 @@ export const customDrawerText = {
     { id: 'submit', path: '9' }
   ],
   selector: '#nove_signup',
-  types: ['WEDDING', 'COMMERCIAL', 'NEWBORN', 'ENGAGEMENT'],
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
@@ -215,7 +210,55 @@ export const doubledAtLastInput = {
     { id: 'submit', path: '6' }
   ],
   selector: '#nove_signup',
-  types: ['WEDDING', 'COMMERCIAL', 'NEWBORN', 'ENGAGEMENT'],
+  userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
+};
+
+export const customSupportedEventTypes = {
+  name: 'custom event types created by user in app settings',
+  id: 'customSupportedEventTypes',
+  version,
+  inputs: [
+    { id: 'name', path: '0' },
+    { id: 'email', path: '1' },
+    {
+      id: 'type',
+      label: 'Event Type',
+      options: [
+        'ENGAGEMENT',
+        'WEDDING',
+        'Birthdays',
+        'Private Dining'
+      ],
+      path: '2',
+      placeholder: 'Choose an event type',
+      required: true,
+      type: 'select'
+    },
+    { id: 'submit', path: '3' }
+  ],
+  selector: '#nove_signup',
+  userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
+};
+
+export const orphanInput = {
+  name: 'orphan input created in formBuilder',
+  id: 'orphanInputCreatedInFormBuilder',
+  version,
+  inputs: [
+    { id: 'name', path: '0' },
+    { id: 'email', path: '1' },
+    { id: 'type', path: '2' },
+    {
+      id: '43b819fc-c5f9-49f7-9385-b41ee94ef16c',
+      label: 'This is an orphan input',
+      orphan: true,
+      path: '3',
+      placeholder: 'Type something here',
+      type: 'text'
+    },
+    { id: 'submit', path: '4' }
+  ],
+  selector: '#nove_signup',
   userID: 'HZV4GVidAWX0LmJtLUhZBd4vKKj2'
 };
 
