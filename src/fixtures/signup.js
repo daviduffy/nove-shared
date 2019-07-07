@@ -1,5 +1,4 @@
 import { FORM_ORDER } from '../constants/formInputs';
-import { EVENT_TYPES_COMMON } from '../constants/eventTypes';
 import { normal } from './forms';
 
 const config = {
@@ -24,13 +23,15 @@ const signupMessageConfig = {
 
 const signupContainerDefaultProps = {
   classes: '',
-  // this is not required because defaults are assigned in the getHydratedInputs func
-  order: FORM_ORDER.MINI,
+  // "inputs" is not necessarily required here because FORM_ORDER.MINI would be supplied
+  // in the getHydratedInputs func if no "inputs" prop is provided
+  inputs: FORM_ORDER.MINI,
   signupSuccessButton: 'Okay!',
   signupSuccessHeading: 'Thank you!',
   signupSuccessMessage: 'I\'ll be back in touch soon.',
-  styles: false,
-  types: EVENT_TYPES_COMMON
+  styles: false
+  // no "types" prop at this level because types are contained within the inputs array
+  // inside of the "type" (eventType) config entry if it is present
 };
 
 const signupEmpty = {
