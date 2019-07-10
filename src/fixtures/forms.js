@@ -226,8 +226,8 @@ export const customSupportedEventTypes = {
       options: [
         'ENGAGEMENT',
         'WEDDING',
-        'Birthdays',
-        'Private Dining'
+        ['5163d581-fdb6-40ac-814a-c4e903d0cf7e', 'Birthday'],
+        ['14da2eab-02cf-4c32-8663-18f7fbf8b788', 'Private Dining']
       ],
       path: '2',
       placeholder: 'Choose an event type',
