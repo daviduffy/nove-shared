@@ -4,6 +4,9 @@ export const uuid = (a) => {return a?(a^Math.random()*16>>a/4).toString(16):([1e
 export const camel2title = (camelCase = '') => camelCase
   .replace(/([A-Z])/g, match => ` ${match}`)
   .replace(/^./, match => match.toUpperCase());
+
+const uuidV4Regex = /^[A-F\d]{8}-[A-F\d]{4}-4[A-F\d]{3}-[89AB][A-F\d]{3}-[A-F\d]{12}$/i;
+export const isValidV4UUID = uuid => uuidV4Regex.test(uuid);
   
 export const throttle = (func, limit) => {
   let lastFunc;
