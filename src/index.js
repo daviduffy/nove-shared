@@ -8,7 +8,7 @@ import Signup from './components/Signup';
 import Submit from './components/Submit';
 
 import { FORM_INPUTS_DEFAULT, FORM_ORDER, FORM_INPUT_TYPES } from './constants/formInputs';
-import { EVENT_TYPES_COMMON, EVENT_TYPES_ALL } from './constants/eventTypes';
+import { EVENT_TYPES_COMMON, EVENT_TYPES_ALL, EVENT_TYPES_CUSTOM } from './constants/eventTypes';
 import { STATES } from './constants/states';
 import { FORM_STYLES_DEFAULT, FORM_BORDER_PRESETS } from './constants/styles';
 
@@ -23,6 +23,7 @@ const obj = {
   // CONSTANTS
   EVENT_TYPES_ALL,
   EVENT_TYPES_COMMON,
+  EVENT_TYPES_CUSTOM,
   FORM_STYLES_DEFAULT,
   FORM_BORDER_PRESETS,
   FORM_FIXTURES,
