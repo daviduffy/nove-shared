@@ -26,6 +26,13 @@ export const customStyles = {
   width: '100%'
 };
 
+export const customField = {
+  id: '14112e56-b1a9-4b0a-83ca-976579f70474',
+  name: 'special-field',
+  type: 'text',
+  vanityName: 'Special field'
+};
+
 export const normal = {
   name: 'normal',
   selector: '#nove_signup',
@@ -135,15 +142,12 @@ export const customAttributeAndBudget = {
     { id: 'email', path: '1' },
     { id: 'budget', path: '2' },
     {
+      ...customField,
       // this is a custom field that was created in settings. this is not an orphan
-      id: '14112e56-b1a9-4b0a-83ca-976579f70474',
       path: '3',
       active: true,
       label: 'Custom field',
-      name: 'special-field',
-      placeholder: 'enter a random word',
-      type: 'text',
-      vanityName: 'Special field'
+      placeholder: 'enter a random word'
     },
     { id: 'submit', path: '4' }
   ],
@@ -169,13 +173,10 @@ export const customDrawerText = {
     },
     {
       // this is a custom field that was created in settings. this is not an orphan
-      id: '14112e56-b1a9-4b0a-83ca-976579f70474',
+      ...customField,
       path: '5/drawer/0',
-      name: 'special-field',
       label: 'Special Field',
-      placeholder: 'enter a random number',
-      type: 'text',
-      vanityName: 'Special field'
+      placeholder: 'enter a random number'
     },
     { id: 'eventVenue', path: '5/drawer/1' },
     { id: 'phone', path: '5/drawer/2' },
@@ -205,7 +206,7 @@ export const doubledAtLastInput = {
     { id: 'referralSource', path: '3/drawer/1' },
     { id: 'message', path: '4' },
     { id: 'row', path: '5' },
-    { id: '14112e56-b1a9-4b0a-83ca-976579f70474', name: 'special-field', path: '5/row/0', type: 'text', vanityName: 'Special field' },
+    { ...customField, path: '5/row/0' },
     { id: 'c2db3801-6ac8-411f-addf-72bd02ca00e6', label: 'Estimated Budget', path: '5/row/1', placeholder: '$XX,XXX', type: 'currency' },
     { id: 'submit', path: '6' }
   ],
