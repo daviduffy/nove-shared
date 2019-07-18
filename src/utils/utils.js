@@ -42,7 +42,7 @@ export const shadeColor = (color, percent) => {
 
 // and this too
 // https://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects/16788517#16788517
-export const objectEquals = function (x, y) {
+export const objectEquals = (x, y) => {
     'use strict';
     if (x === null || x === undefined || y === null || y === undefined) { return x === y; }
     // after this just checking type of one would be enough
