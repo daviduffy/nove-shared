@@ -5,6 +5,7 @@ const version = '4.0.0';
 export const defaultStyles = {
   borderStyle: 'full',
   borderColor: '#b3b3b3',
+  buttonTextColor: '#fefefe',
   drawerBackgroundColor: '#eeeeee',
   drawerTextColor: '#707070',
   inputBackgroundColor: '#fefefe',

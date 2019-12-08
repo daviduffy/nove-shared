@@ -202,6 +202,7 @@ export const getRenderedComponents = ({
 export const getCSS = ({
   borderStyle,
   borderColor,
+  buttonTextColor,
   drawerBackgroundColor,
   drawerTextColor,
   inputBackgroundColor,
@@ -259,6 +260,7 @@ export const getCSS = ({
   };
   const submit = {
     backgroundColor: `${positiveColor}!important`,
+    color: `${buttonTextColor}!important`,
     ':hover': { backgroundColor: `${positiveColorHover}!important` },
     ':focus': { backgroundColor: `${positiveColorHover}!important` },
     ':active': { backgroundColor: `${positiveColorHover}!important` }
@@ -273,6 +275,7 @@ export const getCSS = ({
 export const getStyles = ({
   borderStyle,
   borderColor,
+  buttonTextColor,
   drawerBackgroundColor,
   drawerTextColor,
   inputBackgroundColor,
@@ -285,6 +288,7 @@ export const getStyles = ({
 } = {}) => ({
   borderStyle: ['full', 'underline', 'none'].includes(borderStyle) ? borderStyle : 'full',
   borderColor: borderColor || '#b3b3b3',
+  buttonTextColor: buttonTextColor || '#fefefe',
   drawerBackgroundColor: drawerBackgroundColor || '#eeeeee',
   drawerTextColor: drawerTextColor || '#707070',
   inputBackgroundColor: inputBackgroundColor || '#fefefe',
