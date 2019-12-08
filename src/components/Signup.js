@@ -47,6 +47,10 @@ const Signup = ({
         renderedInputs
       }
     </form>
+    {
+      (style && style.custom) &&
+      <style>{style.custom}</style>
+    }
   </div>
 );
 

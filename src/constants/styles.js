@@ -1,6 +1,7 @@
 export const FORM_STYLES_DEFAULT = {
   borderStyle: 'full',
   borderColor: '#b3b3b3',
+  buttonTextColor: '#fefefe',
   drawerBackgroundColor: '#eeeeee',
   drawerTextColor: '#707070',
   inputBackgroundColor: '#fefefe',

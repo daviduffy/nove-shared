@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { css } from 'glamor';
 
 const Submit = ({ label, style }) => (
-  <div className="F__g F__g--submit">
+  <div className="F__g F__g--submit" data-ui="submit">
     <button className="B B--p F__sb" {...css(style)}>{label}</button>
   </div>
 );

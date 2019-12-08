@@ -23,7 +23,7 @@ beforeEach(() => {
 // submit
 // =================================================================================================
 test('should display normal submit label and placeholder', () => {
-  expect(wrapper).toMatchSnapshot();
+  expect(wrapper.exists('[data-ui="submit"]'));
 });
 
 test('should display custom submit text', () => {
