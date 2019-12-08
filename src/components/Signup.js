@@ -42,6 +42,10 @@ const Signup = ({
         {phoneError && <p>{phoneError}</p>}
       </div>
     }
+    {
+      (style && style.custom) &&
+      <style>{style.custom}</style>
+    }
     <form className="F" onSubmit={onSubmit}>
       {
         renderedInputs

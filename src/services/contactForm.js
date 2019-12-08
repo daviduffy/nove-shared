@@ -11,6 +11,7 @@ import InputTextarea from '../components/InputTextarea';
 import Row from '../components/Row';
 import Submit from '../components/Submit';
 import { shadeColor, titleize } from '../utils/utils';
+import { FORM_STYLES_DEFAULT } from '../constants/styles';
 
 // hydrates the inputs array with all props for all inputs.
 // formerly getInputs
@@ -203,6 +204,7 @@ export const getCSS = ({
   borderStyle,
   borderColor,
   buttonTextColor,
+  custom,
   drawerBackgroundColor,
   drawerTextColor,
   inputBackgroundColor,
@@ -266,16 +268,19 @@ export const getCSS = ({
     ':active': { backgroundColor: `${positiveColorHover}!important` }
   };
 
-  return ({
+  const payload = {
     signup,
     submit
-  });
+  };
+  if (custom) payload.custom = custom;
+  return payload;
 };
 
 export const getStyles = ({
   borderStyle,
   borderColor,
   buttonTextColor,
+  custom,
   drawerBackgroundColor,
   drawerTextColor,
   inputBackgroundColor,
@@ -285,22 +290,34 @@ export const getStyles = ({
   positiveColor,
   placeholderColor,
   width
-} = {}) => ({
-  borderStyle: ['full', 'underline', 'none'].includes(borderStyle) ? borderStyle : 'full',
-  borderColor: borderColor || '#b3b3b3',
-  buttonTextColor: buttonTextColor || '#fefefe',
-  drawerBackgroundColor: drawerBackgroundColor || '#eeeeee',
-  drawerTextColor: drawerTextColor || '#707070',
-  inputBackgroundColor: inputBackgroundColor || '#fefefe',
-  inputTextColor: inputTextColor || '#444444',
-  labelTextColor: labelTextColor || '#444444',
-  negativeColor: negativeColor || '#e74c3c',
-  negativeColorBg: shadeColor(negativeColor || '#e74c3c', 0.8),
-  positiveColor: positiveColor || '#2ecc71',
-  positiveColorHover: shadeColor(positiveColor || '#2ecc71', -0.09),
-  placeholderColor: placeholderColor || '#b3b3b3',
-  width: width || '560px'
-});
+} = {}) => {
+  const payload = {
+    borderStyle: ['full', 'underline', 'none'].includes(borderStyle) ? borderStyle : 'full',
+    borderColor: borderColor || FORM_STYLES_DEFAULT.borderColor,
+    buttonTextColor: buttonTextColor || FORM_STYLES_DEFAULT.buttonTextColor,
+    drawerBackgroundColor: drawerBackgroundColor || FORM_STYLES_DEFAULT.drawerBackgroundColor,
+    drawerTextColor: drawerTextColor || FORM_STYLES_DEFAULT.drawerTextColor,
+    inputBackgroundColor: inputBackgroundColor || FORM_STYLES_DEFAULT.inputBackgroundColor,
+    inputTextColor: inputTextColor || FORM_STYLES_DEFAULT.inputTextColor,
+    labelTextColor: labelTextColor || FORM_STYLES_DEFAULT.labelTextColor,
+    negativeColor: negativeColor || FORM_STYLES_DEFAULT.negativeColor,
+    negativeColorBg: shadeColor(negativeColor || FORM_STYLES_DEFAULT.negativeColor, 0.8),
+    positiveColor: positiveColor || FORM_STYLES_DEFAULT.positiveColor,
+    positiveColorHover: shadeColor(positiveColor || FORM_STYLES_DEFAULT.positiveColor, -0.09),
+    placeholderColor: placeholderColor || FORM_STYLES_DEFAULT.placeholderColor,
+    width: width || FORM_STYLES_DEFAULT.width
+  };
+  if (custom) {
+    // strip html and html entities
+    const stripped = String.prototype.replace.call(custom, /&#?[a-z0-9]{2,8};|<[^>]*>/g, '');
+    if (stripped.length === custom.length) {
+      payload.custom = stripped;
+    } else {
+      console.error('html or html entities stripped from custom css.');
+    }
+  }
+  return payload;
+};
 
 // un-nests inputs into flattened array
 export const flattenInputs = (arr) => {

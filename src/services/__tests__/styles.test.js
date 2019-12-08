@@ -102,7 +102,7 @@ test('should generate default styles', () => {
   expect(styles).toEqual(FORM_STYLES_DEFAULT);
 });
 
-test('should generate custom styles when present', () => {
+test('should generate style block when style options are present', () => {
   const customStyles = {
     borderColor: 'red',
     drawerBackgroundColor: 'transparent',
@@ -127,3 +127,32 @@ test('should generate custom styles when present', () => {
   });
 });
 
+test('should pass through custom style when custom style string is present', () => {
+  const css = 'body{background-color:red!important}';
+  const propsWithCustomCSS = { custom: css };
+  const styles = getStyles(propsWithCustomCSS);
+  expect(styles).toEqual({
+    ...FORM_STYLES_DEFAULT,
+    custom: css
+  });
+});
+
+test('should output nothing if malicious script tag is passed through', () => {
+  const spy = jest.fn();
+  console.error = spy;
+  const css = '</style><script>alert("hi");</script>';
+  const propsWithCustomCSS = { custom: css };
+  const styles = getStyles(propsWithCustomCSS);
+  expect(styles).toEqual(FORM_STYLES_DEFAULT);
+  expect(spy).toHaveBeenCalled();
+});
+
+test('should output nothing if malicious script tag is passed through', () => {
+  const spy = jest.fn();
+  console.error = spy;
+  const css = '</style>&#x3C;script&#x3E;alert(&#x27;hi&#x27;);&#x3C;/script&#x3E;';
+  const propsWithCustomCSS = { custom: css };
+  const styles = getStyles(propsWithCustomCSS);
+  expect(styles).toEqual(FORM_STYLES_DEFAULT);
+  expect(spy).toHaveBeenCalled();
+});
