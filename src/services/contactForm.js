@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FORM_ORDER, FORM_INPUTS_DEFAULT } from '../constants/formInputs';
-import { EVENT_TYPES_COMMON } from '../constants/eventTypes';
+// import { EVENT_TYPES_COMMON } from '../constants/eventTypes';
 
 import Drawer from '../components/Drawer';
 import InputDate from '../components/InputDate';
@@ -268,54 +268,60 @@ export const getCSS = ({
     ':active': { backgroundColor: `${positiveColorHover}!important` }
   };
 
-  const payload = {
+  return {
+    custom,
     signup,
     submit
   };
-  if (custom) payload.custom = custom;
-  return payload;
 };
 
 export const getStyles = ({
-  borderStyle,
-  borderColor,
-  buttonTextColor,
-  custom,
-  drawerBackgroundColor,
-  drawerTextColor,
-  inputBackgroundColor,
-  inputTextColor,
-  labelTextColor,
-  negativeColor,
-  positiveColor,
-  placeholderColor,
-  width
+  borderStyle: _borderStyle,
+  borderColor = FORM_STYLES_DEFAULT.borderColor,
+  buttonTextColor = FORM_STYLES_DEFAULT.buttonTextColor,
+  custom: _custom = FORM_STYLES_DEFAULT.custom,
+  drawerBackgroundColor = FORM_STYLES_DEFAULT.drawerBackgroundColor,
+  drawerTextColor = FORM_STYLES_DEFAULT.drawerTextColor,
+  inputBackgroundColor = FORM_STYLES_DEFAULT.inputBackgroundColor,
+  inputTextColor = FORM_STYLES_DEFAULT.inputTextColor,
+  labelTextColor = FORM_STYLES_DEFAULT.labelTextColor,
+  negativeColor = FORM_STYLES_DEFAULT.negativeColor,
+  positiveColor = FORM_STYLES_DEFAULT.positiveColor,
+  placeholderColor = FORM_STYLES_DEFAULT.placeholderColor,
+  width = FORM_STYLES_DEFAULT.width
 } = {}) => {
-  const payload = {
-    borderStyle: ['full', 'underline', 'none'].includes(borderStyle) ? borderStyle : 'full',
-    borderColor: borderColor || FORM_STYLES_DEFAULT.borderColor,
-    buttonTextColor: buttonTextColor || FORM_STYLES_DEFAULT.buttonTextColor,
-    drawerBackgroundColor: drawerBackgroundColor || FORM_STYLES_DEFAULT.drawerBackgroundColor,
-    drawerTextColor: drawerTextColor || FORM_STYLES_DEFAULT.drawerTextColor,
-    inputBackgroundColor: inputBackgroundColor || FORM_STYLES_DEFAULT.inputBackgroundColor,
-    inputTextColor: inputTextColor || FORM_STYLES_DEFAULT.inputTextColor,
-    labelTextColor: labelTextColor || FORM_STYLES_DEFAULT.labelTextColor,
-    negativeColor: negativeColor || FORM_STYLES_DEFAULT.negativeColor,
-    negativeColorBg: shadeColor(negativeColor || FORM_STYLES_DEFAULT.negativeColor, 0.8),
-    positiveColor: positiveColor || FORM_STYLES_DEFAULT.positiveColor,
-    positiveColorHover: shadeColor(positiveColor || FORM_STYLES_DEFAULT.positiveColor, -0.09),
-    placeholderColor: placeholderColor || FORM_STYLES_DEFAULT.placeholderColor,
-    width: width || FORM_STYLES_DEFAULT.width
-  };
-  if (custom) {
-    // strip html and html entities
-    const stripped = String.prototype.replace.call(custom, /&#?[a-z0-9]{2,8};|<[^>]*>/g, '');
-    if (stripped.length === custom.length) {
-      payload.custom = stripped;
-    } else {
-      console.error('html or html entities stripped from custom css.');
-    }
+  const borderStyle = ['full', 'underline', 'none'].includes(_borderStyle) ? _borderStyle : 'full';
+  const negativeColorBg = shadeColor(negativeColor || FORM_STYLES_DEFAULT.negativeColor, 0.8);
+  const positiveColorHover = shadeColor(positiveColor || FORM_STYLES_DEFAULT.positiveColor, -0.09);
+
+  // use trimmed version in case there are extra spaces
+  const trimmed = String.prototype.trim.call(_custom);
+  // strip html and html entities
+  const stripped = String.prototype.replace.call(trimmed, /&#?[a-z0-9]{2,8};|<[^>]*>/g, '');
+
+  let { custom } = FORM_STYLES_DEFAULT;
+  if (stripped.length === trimmed.length) {
+    custom = stripped;
+  } else {
+    console.error('invalid value in custom css.');
   }
+  const payload = {
+    borderStyle,
+    borderColor,
+    buttonTextColor,
+    custom,
+    drawerBackgroundColor,
+    drawerTextColor,
+    inputBackgroundColor,
+    inputTextColor,
+    labelTextColor,
+    negativeColor,
+    negativeColorBg,
+    positiveColor,
+    positiveColorHover,
+    placeholderColor,
+    width
+  };
   return payload;
 };
 

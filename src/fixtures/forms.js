@@ -2,23 +2,6 @@ import { FORM_ORDER } from '../constants/formInputs';
 
 const version = '4.0.0';
 
-export const defaultStyles = {
-  borderStyle: 'full',
-  borderColor: '#b3b3b3',
-  buttonTextColor: '#fefefe',
-  drawerBackgroundColor: '#eeeeee',
-  drawerTextColor: '#707070',
-  inputBackgroundColor: '#fefefe',
-  inputTextColor: '#444444',
-  labelTextColor: '#444444',
-  negativeColor: '#e74c3c',
-  negativeColorBg: '#fadbd8',
-  positiveColor: '#2ecc71',
-  positiveColorHover: '#2aba67',
-  placeholderColor: '#b3b3b3',
-  width: '560px'
-};
-
 export const customStyles = {
   inputBackgroundColor: 'transparent',
   negativeColor: '#ff9900',

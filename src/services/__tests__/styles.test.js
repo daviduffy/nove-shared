@@ -137,7 +137,17 @@ test('should pass through custom style when custom style string is present', () 
   });
 });
 
-test('should output nothing if malicious script tag is passed through', () => {
+test('should pass through custom style when custom style string has extra spaces on the end', () => {
+  const css = 'body{background-color:red!important}    ';
+  const propsWithCustomCSS = { custom: css };
+  const styles = getStyles(propsWithCustomCSS);
+  expect(styles).toEqual({
+    ...FORM_STYLES_DEFAULT,
+    custom: css.trim()
+  });
+});
+
+test('should output nothing and throw error if malicious script tag is passed through', () => {
   const spy = jest.fn();
   console.error = spy;
   const css = '</style><script>alert("hi");</script>';
@@ -147,12 +157,23 @@ test('should output nothing if malicious script tag is passed through', () => {
   expect(spy).toHaveBeenCalled();
 });
 
-test('should output nothing if malicious script tag is passed through', () => {
+test('should output nothing and throw error if malicious script tag is passed through', () => {
   const spy = jest.fn();
   console.error = spy;
-  const css = '</style>&#x3C;script&#x3E;alert(&#x27;hi&#x27;);&#x3C;/script&#x3E;';
+  const css = '</style>&#x3C;script&#x3E;alert(&#x27;hi&#x27;);&#x3C;/script&#x3E;  ';
   const propsWithCustomCSS = { custom: css };
   const styles = getStyles(propsWithCustomCSS);
   expect(styles).toEqual(FORM_STYLES_DEFAULT);
   expect(spy).toHaveBeenCalled();
+});
+
+test('should output nothing and not throw error if space is passed through', () => {
+  const spy = jest.fn();
+  console.error = spy;
+  const css = ' ';
+  const propsWithCustomCSS = { custom: css };
+  const styles = getStyles(propsWithCustomCSS);
+  const { custon, ...rest } = FORM_STYLES_DEFAULT;
+  expect(styles).toEqual(rest);
+  expect(spy).not.toHaveBeenCalled();
 });
