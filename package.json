@@ -1,6 +1,10 @@
 {
   "name": "nove-shared",
   "version": "1.5.1",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
+  },
   "description": "shared components for nove.io",
   "main": "dist/index.js",
   "repository": "https://github.com/daviduffy/nove-components.git",
@@ -36,7 +40,6 @@
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-html": "4.0.2",
     "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-markdown": "1.0.0-beta.6",
     "eslint-plugin-react": "7.7.0",
